@@ -7,34 +7,29 @@ import play.api.db.DB
 import play.api.Play.current
 import scala.slick.lifted.ColumnOption.DBType
 
-import scala.util.Random
-import java.util.Date
-import util.AuthUtil
-import org.joda.time.DateTime
-import models.entity.Models._
+case class User(firstName: String, lastName: String, id: Option[Long] = None)
 
-case class User(firstName: String, lastName: String, email: String, id: Option[Long] = None)
-
-object UserTable extends Table[User]("mx_user"){
+object UserTable extends Table[User]("test_user"){
   def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
   def firstName = column[String]("first_name", DBType("varchar(50)"))
   def lastName = column[String]("last_name", DBType("varchar(50)"))
-  def email = column[String]("email")
-  def * = firstName ~ lastName ~ email ~ id.? <> (User, User.unapply _)
-  def forInsert = firstName ~ lastName ~ email <> (
-    {t => User(t._1, t._2, t._3)}, {(u: User) => Some(u.firstName, u.lastName, u.email)}
+  def * = firstName ~ lastName ~ id.? <> (User, User.unapply _)
+  def forInsert = firstName ~ lastName <> (
+    {t => User(t._1, t._2)}, {(u: User) => Some(u.firstName, u.lastName)}
   )
 
-  def findByEmail(email: String): Option[User] = Database.forDataSource(DB.getDataSource("entity")) withTransaction {
-    Query(UserTable).where(_.email === email).firstOption
+  def findAll : Seq[User] = Database.forDataSource(DB.getDataSource()) withTransaction {
+    Query(UserTable).sortBy(_.lastName).list
   }
 
-  def findById(id: Long): Option[User] = Database.forDataSource(DB.getDataSource("entity")) withTransaction {
+  def findById(id: Long): Option[User] = Database.forDataSource(DB.getDataSource()) withTransaction {
     Query(UserTable).where(_.id === id).firstOption
   }
 
-
-
+//  def findByEmail(email: String): Option[User] = Database.forDataSource(DB.getDataSource()) withTransaction {
+//    Query(UserTable).where(_.email === email).firstOption
+//  }
+//
 //  def insert(user: User, password: String) : (Long, String) = Database.forDataSource(DB.getDataSource("entity")) withTransaction {
 //    val salt = AuthUtil.salt()
 //    val vid = UserTable.newVid
