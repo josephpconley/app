@@ -1,4 +1,4 @@
-@(users:Seq[User])
+@(users:Seq[User])(implicit flash: Flash, session: Session)
 
 @main("Joe's Code") {
     <table>
