@@ -4,7 +4,7 @@ import play.api._
 import play.api.mvc._
 import models.{SimpleDB}
 
-object Query extends Controller {
+object DBTool extends Controller {
   
   def index = Action { implicit req =>
     //test with swingstats

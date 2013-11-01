@@ -1,0 +1,59 @@
+@()(implicit req: RequestHeader)
+
+@helper.javascriptRouter("wsRoutes")(
+    controllers.ws.routes.javascript.WSTool.call
+)
+
+@main("WS Tool", moreScripts = knockout()) {
+    <div class="row">
+        <div class="span5">
+            <h4>Request</h4>
+            <table>
+                <tr><td>URL</td><td><textarea class="span4" data-bind="value: url"></textarea><br></td></tr>
+                <tr><td>Method</td>
+                    <td>
+                        <select data-bind="value: method">
+                            <option>GET</option>
+                            <option>POST</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <button class="btn" data-bind="click: call">Submit</button>
+        </div>
+        <div class="span6" style="border-left: 1px solid gray; padding-left:50px">
+            <h4>Response</h4>
+            @htmlControl("Body"){
+                <textarea data-bind="value: responseBody" rows="30" class="span6"></textarea>
+            }
+        </div>
+    </div>
+}
+
+<script>
+function WS(){
+    var self = this;
+    self.url = ko.observable("");
+    self.method = ko.observable("GET");
+    self.body = ko.observable("");
+
+    self.responseBody = ko.observable("");
+    self.call = function(){
+        wsRoutes.controllers.ws.WSTool.call().ajax({
+            data: ko.toJSON(self),
+            contentType: 'text/json',
+            success: function(data){
+                console.log(data);
+                self.responseBody(data.body);
+            },
+            error: function(data){
+                console.log(data);
+                var response = $.parseJSON(data.responseText);
+            }
+        });
+    }
+}
+
+var ws = new WS();
+ko.applyBindings(ws);
+</script>

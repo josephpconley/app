@@ -1,4 +1,4 @@
-@(columns:Seq[String], rs:Seq[Map[String,String]])(implicit flash: Flash, session: Session)
+@(columns:Seq[String], rs:Seq[Map[String,String]])(implicit req: RequestHeader)
 
 @main("Cloud DB") {
     <h3>Results</h3>

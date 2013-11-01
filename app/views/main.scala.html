@@ -1,4 +1,4 @@
-@(title: String, moreStyles: Html = Html.empty, moreScripts: Html = Html.empty)(content: Html)(implicit flash: Flash, session: Session)
+@(title: String, moreStyles: Html = Html.empty, moreScripts: Html = Html.empty)(content: Html)(implicit req: RequestHeader)
 
 <!DOCTYPE html>
 
@@ -31,7 +31,9 @@
                         <ul class="nav nav-pills menu">
                             <li><a href="@routes.Application.index()">Home</a></li>
                             <li class="divider-vertical"></li>
-                            <li><a href="@controllers.db.routes.Query.index()">Cloud DB</a></li>
+                            <li><a href="@controllers.db.routes.DBTool.index()">DB</a></li>
+                            <li class="divider-vertical"></li>
+                            <li><a href="@controllers.ws.routes.WSTool.index()">WS</a></li>
                         </ul>
                     </div>
                 </div>
