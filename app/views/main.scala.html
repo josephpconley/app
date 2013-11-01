@@ -14,6 +14,9 @@
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
 
+        <!-- tablesorter for db results -->
+        <script src="@routes.Assets.at("javascripts/jquery.tablesorter.min.js")" type="text/javascript"></script>
+
         <!-- bootstrap stuff -->
         <script src="@routes.Assets.at("javascripts/bootstrap/bootstrap.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("javascripts/main.js")" type="text/javascript"></script>
@@ -28,7 +31,7 @@
                         <ul class="nav nav-pills menu">
                             <li><a href="@routes.Application.index()">Home</a></li>
                             <li class="divider-vertical"></li>
-                            <li><a href="@routes.Application.index()">DBExplorer</a></li>
+                            <li><a href="@controllers.db.routes.Query.index()">Cloud DB</a></li>
                         </ul>
                     </div>
                 </div>

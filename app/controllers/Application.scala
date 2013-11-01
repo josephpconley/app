@@ -7,7 +7,7 @@ import models.UserTable
 object Application extends Controller {
   
   def index = Action { implicit req =>
-    Ok(views.html.index(UserTable.findAll))
+    Ok(views.html.index())
   }
   
 }

@@ -1,0 +1,29 @@
+@(columns:Seq[String], rs:Seq[Map[String,String]])(implicit flash: Flash, session: Session)
+
+@main("Cloud DB") {
+    <h3>Results</h3>
+    <table id="myTable" class="tablesorter">
+        <thead>
+            <tr>
+            @for(c <- columns){
+                <th>@c</th>
+            }
+            </tr>
+        </thead>
+        <tbody>
+            @for(row <- rs){
+            <tr>
+                @for(c <- columns){
+                <td>@row(c)</td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<script>
+$(document).ready(function(){
+    $("#myTable").tablesorter();
+});
+</script>

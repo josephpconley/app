@@ -1,18 +1,5 @@
-@(users:Seq[User])(implicit flash: Flash, session: Session)
+@()(implicit flash: Flash, session: Session)
 
 @main("Joe's Code") {
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-        </tr>
-        @for(u <- users){
-            <tr>
-                <td>@u.id</td>
-                <td>@u.firstName</td>
-                <td>@u.lastName</td>
-            </tr>
-        }
-    </table>
+    <h3>Welcome!</h3>
 }
