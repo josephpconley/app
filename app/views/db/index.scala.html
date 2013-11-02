@@ -1,29 +1,78 @@
-@(columns:Seq[String], rs:Seq[Map[String,String]])(implicit req: RequestHeader)
+@()(implicit req: RequestHeader)
 
-@main("Cloud DB") {
-    <h3>Results</h3>
-    <table id="myTable" class="tablesorter">
+@helper.javascriptRouter("dbRoutes")(
+    controllers.db.routes.javascript.DBTool.execute
+)
+
+@main("Cloud Database Query Engine", moreScripts = knockout()) {
+    <form class="span12 form-inline">
+        <input type="text" data-bind="value: driver" placeholder="Driver"/>
+        <input type="text" data-bind="value: url" placeholder="URL"/>
+        <input type="text" data-bind="value: user" placeholder="Username"/>
+        <input type="password" data-bind="value: pass" placeholder="Password"/>
+    </form>
+    <textarea class="span12" rows="5" data-bind="value: query"></textarea>
+    <button class="btn" data-bind="click: execute">Submit</button>
+
+    <h4>Results</h4>
+    <table id="myTable" class="tablesorter span12">
         <thead>
-            <tr>
-            @for(c <- columns){
-                <th>@c</th>
-            }
+            <tr data-bind="foreach: resultSet().columns">
+                <th data-bind="text: $data"></th>
             </tr>
         </thead>
-        <tbody>
-            @for(row <- rs){
-            <tr>
-                @for(c <- columns){
-                <td>@row(c)</td>
-                }
+        <tbody data-bind="foreach: { data: resultSet().rows, as: 'row' }">
+            <tr data-bind="foreach: { data: $root.resultSet().columns, as: 'column' }">
+                <td data-bind="text: row[column]"></td>
             </tr>
-            }
         </tbody>
     </table>
 }
 
 <script>
-$(document).ready(function(){
-    $("#myTable").tablesorter();
-});
+function ResultSet(){
+    var self = this;
+    self.columns = ko.observableArray([]);
+    self.rows = ko.observableArray([]);
+}
+
+function DB(){
+    var self = this;
+    self.url = ko.observable("");
+    self.driver = ko.observable("");
+    self.user = ko.observable("");
+    self.pass = ko.observable("");
+    self.query = ko.observable("");
+
+    self.resultSet = ko.observable(new ResultSet());
+
+    //db.load("org.h2.Driver", "jdbc:h2:tcp://swingstats.com/~/golf", "sa", "arvydas11");
+    self.load = function(driver, url, user, pass){
+        self.driver(driver);
+        self.url(url);
+        self.user(user);
+        self.pass(pass);
+    }
+
+    self.execute = function(){
+        dbRoutes.controllers.db.DBTool.execute().ajax({
+            data: ko.toJSON(self),
+            contentType: 'text/json',
+            success: function(data){
+                self.resultSet().columns(data.columns);
+                self.resultSet().rows(data.rows);
+                $("#myTable").tablesorter();
+            },
+            error: function(data){
+                console.log(data);
+                var response = $.parseJSON(data.responseText);
+            }
+        });
+    }
+}
+
+var db = new DB();
+ko.applyBindings(db);
+
+
 </script>

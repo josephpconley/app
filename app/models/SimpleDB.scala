@@ -87,8 +87,12 @@ trait SimpleDB {
   }
 }
 
+case class DBConfig(driver: String, url: String, user: String, pass: String)
+
 object SimpleDB {
-  def apply(driver: String, url: String, user: String, pass: String) = new SimpleDB {
+  def apply(config: DBConfig) : SimpleDB = apply(config.driver, config.url, config.user, config.pass)
+
+  def apply(driver: String, url: String, user: String, pass: String) : SimpleDB = new SimpleDB {
     override def getConnection = {
       Class.forName(driver)
       DriverManager.getConnection(url, user, pass)

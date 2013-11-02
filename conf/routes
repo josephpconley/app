@@ -7,6 +7,7 @@ GET     /                           controllers.Application.index
 
 #DB
 GET     /db                         controllers.db.DBTool.index
+POST    /db/execute                 controllers.db.DBTool.execute
 
 #WS
 GET     /ws                         controllers.ws.WSTool.index
