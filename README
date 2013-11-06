@@ -2,10 +2,14 @@ This is your new Play 2.1 application
 =====================================
 
 This file will be packaged with your application, when using `play dist`.
+
+set config for new relic
+heroku config:set JAVA_OPTS="-XX:MaxPermSize=128m -Xmx334m -Xss512k -XX:+UseCompressedOops -Dnewrelic.bootstrap_classpath=true -javaagent:target/staged/newrelic-agent-3.1.0.jar"
+
 === glacial-bayou-6716 Config Vars
 DATABASE_URL:               postgres://ogbzlkmkyrbtwk:XSeESU-9Qj5u9uO8ExzoDAFy9H@ec2-23-21-113-206.compute-1.amazonaws.com:5432/dfckehpcbu27dn
 HEROKU_POSTGRESQL_ROSE_URL: postgres://ogbzlkmkyrbtwk:XSeESU-9Qj5u9uO8ExzoDAFy9H@ec2-23-21-113-206.compute-1.amazonaws.com:5432/dfckehpcbu27dn
-JAVA_OPTS:                  -Xmx384m -Xss512k -XX:+UseCompressedOops
+JAVA_OPTS:                  -Xmx384m -Xss512k -XX:+UseCompressedOops -Dnewrelic.bootstrap_classpath=true -javaagent:target/staged/newrelic-agent-3.1.0.jar
 PATH:                       .jdk/bin:.sbt_home/bin:/usr/local/bin:/usr/bin:/bin
 REPO:                       /app/.sbt_home/.ivy2/cache
 SBT_OPTS:                   -Xmx384m -Xss512k -XX:+UseCompressedOops
