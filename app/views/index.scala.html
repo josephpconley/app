@@ -1,5 +1,43 @@
 @()(implicit req: RequestHeader)
 
-@main("Joe's Code") {
-    <h3>Welcome!</h3>
+@main("Joe's Code", moreSciprts = knockout()) {
+    <div class="row">
+        <div class="span2">
+            <h4>Sidebar</h4>
+            <table data-bind="foreach: tags">
+                <tr><td><a>$data.label</a></td></tr>
+            </table>
+        </div>
+        <div class="span10">
+            <iframe id="viewingPane" width="950" height="800" type="text/html"></iframe>
+        </div>
+    </div>
 }
+
+<script>
+function Tag(){
+    var self = this;
+    self.url = ko.observable("");
+    self.label = ko.observable("");
+
+    self.load = function(url, label){
+        self.url(url);
+        self.label(label);
+    }
+
+    self.view = function(){
+        $("#viewingPane").attr("src", self.url());
+    }
+}
+
+function TagList(){
+    var self = this;
+    self.tags = ko.observableArray();
+}
+
+var list = new TagList();
+ko.applyBindings(list);
+
+list.tags.push(new
+
+</script>
