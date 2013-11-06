@@ -11,7 +11,7 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     "postgresql" % "postgresql" % "9.1-901-1.jdbc4",
     "com.typesafe.play" %% "play-slick" % "0.4.0",
-    "com.newrelic.agent.java" % "newrelic-java" % "3.1.0",
+    "com.newrelic.agent.java" % "newrelic-agent" % "3.1.0",
     jdbc,
     anorm
   )
