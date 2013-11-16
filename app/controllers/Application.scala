@@ -9,5 +9,4 @@ object Application extends Controller {
   def index = Action { implicit req =>
     Ok(views.html.index())
   }
-  
 }

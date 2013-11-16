@@ -19,6 +19,10 @@ object DBTool extends Controller {
     Ok(views.html.db.index())
   }
 
+  def parseColumns(query:String) = {
+    val select = query.substring(query.indexOf("select"))
+  }
+
   def execute = Action(parse.json) { implicit req =>
     Json.reads[DBConfig].reads(req.body).fold(
       invalid => BadRequest,

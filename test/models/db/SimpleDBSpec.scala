@@ -1,9 +1,11 @@
-package models
+package models.db
 
 import org.specs2.mutable._
 
 import play.api.test._
 import play.api.test.Helpers._
+import models.SimpleDB
+import com.log4p.sqldsl.SQLParser
 
 /**
  * Add your spec here.
