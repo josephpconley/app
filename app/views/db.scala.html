@@ -15,7 +15,8 @@
     <button class="btn" data-bind="click: execute">Submit</button>
 
     <h4>Results</h4>
-    <table id="myTable" class="tablesorter span12">
+    <p data-bind="visible: resultSet().rows().length == 0, text: response"></p>
+    <table id="myTable" class="tablesorter span12" data-bind="visible: resultSet().rows().length > 0">
         <thead>
             <tr data-bind="foreach: resultSet().columns">
                 <th data-bind="text: $data"></th>
@@ -34,6 +35,10 @@ function ResultSet(){
     var self = this;
     self.columns = ko.observableArray([]);
     self.rows = ko.observableArray([]);
+    self.clear = function(){
+        self.rows.removeAll();
+        self.columns.removeAll();
+    }
 }
 
 function DB(){
@@ -45,6 +50,7 @@ function DB(){
     self.query = ko.observable("");
 
     self.resultSet = ko.observable(new ResultSet());
+    self.response = ko.observable("");
 
     //db.load("org.h2.Driver", "jdbc:h2:tcp://swingstats.com/~/golf", "sa", "arvydas11");
     self.load = function(driver, url, user, pass){
@@ -59,13 +65,18 @@ function DB(){
             data: ko.toJSON(self),
             contentType: 'text/json',
             success: function(data){
-                self.resultSet().columns(data.columns);
-                self.resultSet().rows(data.rows);
-                $("#myTable").tablesorter();
+                if(data.message){
+                    self.response(data.message);
+                    self.resultSet().clear();
+                }else{
+                    self.response("");
+                    self.resultSet().columns(data.columns);
+                    self.resultSet().rows(data.rows);
+                    $("#myTable").tablesorter();
+                }
             },
             error: function(data){
-                console.log(data);
-                var response = $.parseJSON(data.responseText);
+                self.response($.parseJSON(data.responseText).message);
             }
         });
     }

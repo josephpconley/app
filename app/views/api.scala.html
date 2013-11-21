@@ -1,7 +1,7 @@
 @()(implicit req: RequestHeader)
 
 @helper.javascriptRouter("wsRoutes")(
-    controllers.ws.routes.javascript.WSTool.call
+    controllers.api.routes.javascript.WSTool.call
 )
 
 @main("WS Tool", moreScripts = knockout()) {

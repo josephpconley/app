@@ -1,18 +1,18 @@
 package models.api
 
-import scala.slick
-import slick.driver.PostgresDriver.simple._
-import Database.threadLocalSession
-import play.api.Logger
-import play.api.db.DB
-import play.api.Play.current
-import scala.slick.lifted.ColumnOption.DBType
-
-import scala.slick.jdbc.{GetResult, StaticQuery => Q}
-import scala.slick.lifted.ColumnOption.DBType
-import org.joda.time.DateTime
-import play.api.libs.oauth.{RequestToken, ServiceInfo, OAuth, ConsumerKey}
-import models.Models._
+//import scala.slick
+//import slick.driver.PostgresDriver.simple._
+//import Database.threadLocalSession
+//import play.api.Logger
+//import play.api.db.DB
+//import play.api.Play.current
+//import scala.slick.lifted.ColumnOption.DBType
+//
+//import scala.slick.jdbc.{GetResult, StaticQuery => Q}
+//import scala.slick.lifted.ColumnOption.DBType
+//import org.joda.time.DateTime
+//import play.api.libs.oauth.{RequestToken, ServiceInfo, OAuth, ConsumerKey}
+//import models.Models._
 
 /**
  * User: joe
@@ -30,6 +30,8 @@ import models.Models._
 
 
  */
+
+/*
 
 case class OAuthApp(consumerKey: String, consumerSecret: String, requestTokenURL: String, accessTokenURL: String, authorizationURL: String, id: Option[Long] = None){
   def KEY = ConsumerKey(consumerKey, consumerSecret)
@@ -77,3 +79,4 @@ object OTokenTable extends Table[OToken]("oauth_token"){
     }
   }
 }
+*/

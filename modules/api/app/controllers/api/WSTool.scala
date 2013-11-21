@@ -1,18 +1,13 @@
-package controllers.ws
+package controllers.api
 
 import play.api._
 import play.api.mvc._
-import models.{SimpleDB}
 import play.api.libs.json.Json
 import play.api.libs.ws.WS
 import scala.concurrent.ExecutionContext.Implicits.global
 
 object WSTool extends Controller {
   
-  def index = Action { implicit req =>
-    Ok(views.html.ws.index())
-  }
-
   case class Call(url: String, method: String, body:String)
   case class Response(body: String)
 
