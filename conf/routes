@@ -4,7 +4,6 @@
 
 # Home page
 GET     /                           controllers.Application.index
-GET     /test                       controllers.Application.test
 
 #Single-page apps
 GET     /db                         controllers.Application.db

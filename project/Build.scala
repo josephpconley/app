@@ -4,7 +4,7 @@ import play.Project._
 
 object ApplicationBuild extends Build {
 
-  val appName         = "app"
+  val appName         = "toolbox"
   val appVersion      = "1.0-SNAPSHOT"
 
   val dbDependencies = Seq(
@@ -18,12 +18,14 @@ object ApplicationBuild extends Build {
     "com.newrelic.agent.java" % "newrelic-agent" % "3.1.0"
   ) ++ dbDependencies
 
+  val anagrammer = Project("anagrammer", file("modules/anagrammer"), settings = Defaults.defaultSettings ++ play.Project.intellijCommandSettings("SCALA"))
+
   val api = play.Project("api", "1.0", path = file("modules/api"))
 
   val db = play.Project("db", "1.0", dbDependencies, path = file("modules/db"))
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     resolvers += Resolver.url("sbt-plugin-releases", new URL("http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns)
-  ).dependsOn(api, db).aggregate(api, db)
+  ).dependsOn(anagrammer, api, db).aggregate(anagrammer, api, db)
 
 }
