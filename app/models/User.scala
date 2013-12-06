@@ -1,29 +1,35 @@
 package models
 
-import slick.driver.PostgresDriver.simple._
+import slick.driver.H2Driver.simple._
 import Database.threadLocalSession
 import play.api.Logger
 import play.api.db.DB
 import play.api.Play.current
 import scala.slick.lifted.ColumnOption.DBType
+import java.sql.Date
 
-case class User(firstName: String, lastName: String, id: Option[Long] = None)
+case class User(firstName: String, lastName: String, createDate: java.sql.Date, id: Option[Long] = None)
 
 object UserTable extends Table[User]("test_user"){
   def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
   def firstName = column[String]("first_name", DBType("varchar(50)"))
   def lastName = column[String]("last_name", DBType("varchar(50)"))
-  def * = firstName ~ lastName ~ id.? <> (User, User.unapply _)
-  def forInsert = firstName ~ lastName <> (
-    {t => User(t._1, t._2)}, {(u: User) => Some(u.firstName, u.lastName)}
+  def createDate = column[java.sql.Date]("create_date", DBType("date default sysdate"))
+  def * = firstName ~ lastName ~ createDate ~ id.? <> (User, User.unapply _)
+  def forInsert = firstName ~ lastName ~ createDate <> (
+    {t => User(t._1, t._2, t._3)}, {(u: User) => Some(u.firstName, u.lastName, u.createDate)}
   )
 
-  def findAll : Seq[User] = Database.forDataSource(DB.getDataSource()) withTransaction {
+  def findAll : Seq[User] = Database.forDataSource(DB.getDataSource("h2")) withTransaction {
     Query(UserTable).sortBy(_.lastName).list
   }
 
-  def findById(id: Long): Option[User] = Database.forDataSource(DB.getDataSource()) withTransaction {
+  def findById(id: Long): Option[User] = Database.forDataSource(DB.getDataSource("h2")) withTransaction {
     Query(UserTable).where(_.id === id).firstOption
+  }
+
+  def insert(u: User) = Database.forDataSource(DB.getDataSource("h2")) withTransaction {
+    UserTable.forInsert returning UserTable.id insert u
   }
 
 //  def findByEmail(email: String): Option[User] = Database.forDataSource(DB.getDataSource()) withTransaction {
