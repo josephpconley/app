@@ -1,0 +1,54 @@
+@(banks: Seq[anagrams.WordBank])(implicit req: RequestHeader)
+
+@helper.javascriptRouter("anagramRoutes")(
+    controllers.api.routes.javascript.WSTool.call
+)
+
+@main("Anagram Solver", moreScripts = knockout()) {
+    <div class="row">
+        <div class="span5">
+            <h4>Request</h4>
+            <table>
+                @for(b <- banks){
+                <tr><td><input type="radio" name="bankGroup" value="@b.name" data-bind="checked: selectedBank"/></td><td><a href="@b.url" target="_blank">@b.url</a></td></tr>
+                }
+                <tr><td><input type="radio" name="bankGroup" value="custom" data-bind="checked: selectedBank"/></td><td><textarea class="span4" data-bind="value: customBank"></textarea><br></td></tr>
+            </table>
+            <button class="btn" data-bind="click: call">Submit</button>
+        </div>
+        <div class="span6" style="border-left: 1px solid gray; padding-left:50px">
+            <h4>Response</h4>
+            @htmlControl("Body"){
+                <textarea data-bind="value: responseBody" rows="30" class="span6"></textarea>
+            }
+        </div>
+    </div>
+}
+
+<script>
+function AnagramSolver(){
+    var self = this;
+    self.url = ko.observable("");
+    self.selectedBank = ko.observable("");
+    self.customBank = ko.observable("");
+    self.answers = ko.observable("");
+
+    self.call = function(){
+        wsRoutes.controllers.ws.WSTool.call().ajax({
+            data: ko.toJSON(self),
+            contentType: 'text/json',
+            success: function(data){
+                console.log(data);
+                self.answers(data.body);
+            },
+            error: function(data){
+                console.log(data);
+                var response = $.parseJSON(data.responseText);
+            }
+        });
+    }
+}
+
+var as = new AnagramSolver();
+ko.applyBindings(as);
+</script>

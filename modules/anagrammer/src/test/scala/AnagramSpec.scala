@@ -1,3 +1,4 @@
+import anagrams.Anagrammer
 import org.specs2.mutable._
 import scala.io.Source
 

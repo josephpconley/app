@@ -13,6 +13,10 @@ GET     /twitter/auth               controllers.Twitter.authenticate
 GET     /db                         controllers.Application.db
 GET     /api                        controllers.Application.api
 
+
+GET     /anagrams                   controllers.Anagrams.solver
+POST    /anagrams                   controllers.Anagrams.solutions
+
 ->      /api                        api.Routes
 ->      /db                         db.Routes
 

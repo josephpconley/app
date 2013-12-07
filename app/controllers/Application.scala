@@ -5,6 +5,7 @@ import play.api.mvc._
 import models.UserTable
 import play.api.data.Form
 import play.api.data.Forms._
+import anagrams.Anagrammer
 
 object Application extends Controller {
 
