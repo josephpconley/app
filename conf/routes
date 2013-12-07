@@ -5,6 +5,10 @@
 # Home page
 GET     /                           controllers.Application.index
 
+# Twitter
+GET     /twitter                    controllers.Twitter.index
+GET     /twitter/auth               controllers.Twitter.authenticate
+
 #Single-page apps
 GET     /db                         controllers.Application.db
 GET     /api                        controllers.Application.api
