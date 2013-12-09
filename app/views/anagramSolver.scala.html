@@ -1,45 +1,68 @@
 @(banks: Seq[anagrams.WordBank])(implicit req: RequestHeader)
 
 @helper.javascriptRouter("anagramRoutes")(
-    controllers.api.routes.javascript.WSTool.call
+    routes.javascript.Anagrams.solve
 )
 
 @main("Anagram Solver", moreScripts = knockout()) {
     <div class="row">
         <div class="span5">
-            <h4>Request</h4>
+            <h4>Anagram Input</h4>
             <table>
                 @for(b <- banks){
-                <tr><td><input type="radio" name="bankGroup" value="@b.name" data-bind="checked: selectedBank"/></td><td><a href="@b.url" target="_blank">@b.url</a></td></tr>
+                <tr><td><input type="radio" name="bankGroup" value="@b.name" data-bind="checked: selectedBank"/></td><td><a href="@b.url" target="_blank">@b.name</a></td></tr>
                 }
                 <tr><td><input type="radio" name="bankGroup" value="custom" data-bind="checked: selectedBank"/></td><td><textarea class="span4" data-bind="value: customBank"></textarea><br></td></tr>
+                <tr><td># Wilds</td><td><input type="text" data-bind="value: numWild"/></td></tr>
+                <tr><td>Input</td><td><input type="text" data-bind="value: input"/></td></tr>
             </table>
             <button class="btn" data-bind="click: call">Submit</button>
         </div>
         <div class="span6" style="border-left: 1px solid gray; padding-left:50px">
-            <h4>Response</h4>
-            @htmlControl("Body"){
-                <textarea data-bind="value: responseBody" rows="30" class="span6"></textarea>
+            <h4>Solutions</h4>
+            @htmlControl(""){
+                <textarea data-bind="value: answers" rows="10" class="span6"></textarea>
             }
         </div>
     </div>
 }
 
 <script>
+function Bank(name, url){
+    var self = this;
+    self.name = ko.observable(name);
+    self.url = ko.observable(url);
+}
+
 function AnagramSolver(){
     var self = this;
-    self.url = ko.observable("");
+    self.banks = ko.observableArray([]);
     self.selectedBank = ko.observable("");
     self.customBank = ko.observable("");
+    self.numWild = ko.observable(0);
     self.answers = ko.observable("");
+    self.input = ko.observable("");
+    self.url = ko.observable("");
+
+    self.selectedBank.subscribe(function(s){
+        if(s == "custom"){
+            self.url(null);
+        }else{
+            for(var i = 0; i < self.banks().length; i++){
+                if(self.banks()[i].name() == s){
+                    self.url(self.banks()[i].url());
+                }
+            }
+        }
+    });
 
     self.call = function(){
-        wsRoutes.controllers.ws.WSTool.call().ajax({
+        anagramRoutes.controllers.Anagrams.solve().ajax({
             data: ko.toJSON(self),
             contentType: 'text/json',
             success: function(data){
                 console.log(data);
-                self.answers(data.body);
+                self.answers(data);
             },
             error: function(data){
                 console.log(data);
@@ -50,5 +73,10 @@ function AnagramSolver(){
 }
 
 var as = new AnagramSolver();
+
+@for(b <- banks){
+    as.banks.push(new Bank('@b.name', '@b.url'));
+}
+
 ko.applyBindings(as);
 </script>

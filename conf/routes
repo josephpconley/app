@@ -15,7 +15,7 @@ GET     /api                        controllers.Application.api
 
 
 GET     /anagrams                   controllers.Anagrams.solver
-POST    /anagrams                   controllers.Anagrams.solutions
+POST    /anagrams                   controllers.Anagrams.solve
 
 ->      /api                        api.Routes
 ->      /db                         db.Routes

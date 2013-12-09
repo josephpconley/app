@@ -10,8 +10,9 @@ object Anagrammer {
 
   val BANKS = Seq(SCRABBLE, UNIX)
 
-  def unscramble(jumble: String, wordBank: Seq[String]): Seq[String] = wordBank.filter(w => w.size == jumble.size && jumble.sorted.toLowerCase == w.sorted.toLowerCase)
+  def unscramble(jumble: String, wordBank: Seq[String]): Seq[String] = wordBank.filter(w => jumble.sorted.toLowerCase == w.sorted.toLowerCase)
 
+  //for scrabble-like situations, return all possible matches from a string of letters
   def matches(letters: String, wordBank: Seq[String]): Seq[String] = {
     val combos:Seq[Set[Char]] = letters.toCharArray.toSet.subsets.toSeq
     combos.flatMap(c => unscramble(c.mkString, wordBank))
