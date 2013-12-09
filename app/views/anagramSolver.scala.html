@@ -6,22 +6,31 @@
 
 @main("Anagram Solver", moreScripts = knockout()) {
     <div class="row">
-        <div class="span5">
+        <form class="form-horizontal span5">
             <h4>Anagram Input</h4>
-            <table>
+            @htmlControl("Mode"){
+                <label class="radio inline"><input type="radio" name="modeGroup" value="jumble" data-bind="checked: mode"/>Jumble</label>
+                <label class="radio inline"><input type="radio" name="modeGroup" value="scrabble" data-bind="checked: mode"/> Scrabble</label>
+            }
+            @htmlControl("Word List Source"){
                 @for(b <- banks){
-                <tr><td><input type="radio" name="bankGroup" value="@b.name" data-bind="checked: selectedBank"/></td><td><a href="@b.url" target="_blank">@b.name</a></td></tr>
+                    <label class="radio inline"><input type="radio" name="bankGroup" value="@b.name" data-bind="checked: selectedBank"/>@b.name</label><br>
                 }
-                <tr><td><input type="radio" name="bankGroup" value="custom" data-bind="checked: selectedBank"/></td><td><textarea class="span4" data-bind="value: customBank"></textarea><br></td></tr>
-                <tr><td># Wilds</td><td><input type="text" data-bind="value: numWild"/></td></tr>
-                <tr><td>Input</td><td><input type="text" data-bind="value: input"/></td></tr>
-            </table>
-            <button class="btn" data-bind="click: call">Submit</button>
-        </div>
+                <label class="radio inline"><input type="radio" name="bankGroup" value="custom" data-bind="checked: selectedBank"/>Custom</label><br>
+                <textarea class="span3" data-bind="value: customBank" placeholder="Custom word list"></textarea>
+            }
+            @htmlControl("# Wilds"){
+                <input type="text" data-bind="value: numWild"/></td>
+            }
+            @htmlControl("Input"){
+                <input type="text" data-bind="value: input"/>
+            }
+            <button class="btn" data-bind="click: call, disable: searching">Submit</button>
+        </form>
         <div class="span6" style="border-left: 1px solid gray; padding-left:50px">
             <h4>Solutions</h4>
             @htmlControl(""){
-                <textarea data-bind="value: answers" rows="10" class="span6"></textarea>
+                <textarea data-bind="value: answerList" rows="10" class="span6" placeholder="No solutions found"></textarea>
             }
         </div>
     </div>
@@ -37,12 +46,18 @@ function Bank(name, url){
 function AnagramSolver(){
     var self = this;
     self.banks = ko.observableArray([]);
+    self.mode = ko.observable("jumble");
     self.selectedBank = ko.observable("");
     self.customBank = ko.observable("");
     self.numWild = ko.observable(0);
-    self.answers = ko.observable("");
+    self.answers = ko.observableArray([]);
     self.input = ko.observable("");
     self.url = ko.observable("");
+    self.searching = ko.observable(false);
+
+    self.answerList = ko.computed(function(){
+        return self.answers().join("\n");
+    });
 
     self.selectedBank.subscribe(function(s){
         if(s == "custom"){
@@ -57,26 +72,30 @@ function AnagramSolver(){
     });
 
     self.call = function(){
+        self.searching(true);
         anagramRoutes.controllers.Anagrams.solve().ajax({
             data: ko.toJSON(self),
             contentType: 'text/json',
             success: function(data){
                 console.log(data);
                 self.answers(data);
+                self.searching(false);
             },
             error: function(data){
                 console.log(data);
                 var response = $.parseJSON(data.responseText);
+                self.searching(false);
             }
         });
     }
 }
 
 var as = new AnagramSolver();
+ko.applyBindings(as);
 
 @for(b <- banks){
     as.banks.push(new Bank('@b.name', '@b.url'));
 }
+as.selectedBank('@banks.head.name');
 
-ko.applyBindings(as);
 </script>

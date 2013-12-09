@@ -26,6 +26,11 @@ object Anagrams extends Controller{
     val reads = ((__ \ "input").read[String] and (__ \ "numWild").read[Int]).tupled
     val (input, numWild) = reads.reads(req.body).getOrElse(throw new Exception("Bad JSON"))
 
-    Ok(Json.toJson(Anagrammer.unscramble(input, bank)))
+    val solutions = (req.body \ "mode").as[String] match {
+      case "jumble" => Anagrammer.unscramble(input, bank)
+      case _ => Anagrammer.matchesWithWild(input, numWild, bank)
+    }
+
+    Ok(Json.toJson(solutions))
   }
 }
