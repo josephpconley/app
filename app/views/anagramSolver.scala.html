@@ -20,7 +20,7 @@
                 <textarea class="span3" data-bind="value: customBank" placeholder="Custom word list"></textarea>
             }
             @htmlControl("# Wilds"){
-                <input type="text" data-bind="value: numWild"/></td>
+                <input type="text" data-bind="numericValue: numWild"/></td>
             }
             @htmlControl("Input"){
                 <input type="text" data-bind="value: input"/>
@@ -57,6 +57,10 @@ function AnagramSolver(){
 
     self.answerList = ko.computed(function(){
         return self.answers().join("\n");
+    });
+
+    self.customList = ko.computed(function(){
+        return self.customBank().split("\n");
     });
 
     self.selectedBank.subscribe(function(s){
