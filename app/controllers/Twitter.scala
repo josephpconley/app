@@ -9,6 +9,7 @@ import play.api.libs.oauth.RequestToken
 import play.api.libs.oauth.ConsumerKey
 
 import concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 /**
  * User: jconley
@@ -24,14 +25,12 @@ object Twitter extends Controller {
     "https://api.twitter.com/oauth/authorize", KEY),
     false)
 
-  def index = Action { request =>
+  def index = Action.async { request =>
     Twitter.sessionTokenPair(request).map{ tokens =>
-      Async {
-        WS.url("https://api.twitter.com/1.1/statuses/home_timeline.json").sign(OAuthCalculator(Twitter.KEY, tokens)).get.map{r =>
-          Ok(r.body)
-        }
+      WS.url("https://api.twitter.com/1.1/statuses/home_timeline.json").sign(OAuthCalculator(Twitter.KEY, tokens)).get.map{r =>
+        Ok(r.body)
       }
-    }.getOrElse(Redirect(routes.Twitter.authenticate()))
+    }.getOrElse(Future(Redirect(routes.Twitter.authenticate())))
   }
 
   def authenticate = Action { request =>

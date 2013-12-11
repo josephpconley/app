@@ -18,6 +18,8 @@ class SQLParserSpec extends Specification{
       val parser = new SQLParser()
       val stmt = parser.parse("select * from golfer")
       println(stmt)
+
+      1 + 1 must beEqualTo(2)
     }
   }
 

@@ -1,13 +1,16 @@
 package controllers
 
 import anagrams.Anagrammer
-import play.api.mvc.{Action, Controller}
+import play.api.mvc.{WebSocket, Action, Controller}
 import scala.io.Source
 import anagrams.Anagrammer._
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
+import play.api.Logger
+import play.api.libs.iteratee.{Iteratee, Enumerator, Concurrent}
+import java.net.URL
 
-
+import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
  * User: joe
@@ -32,5 +35,19 @@ object Anagrams extends Controller{
     }
 
     Ok(Json.toJson(solutions))
+  }
+
+  def connect = WebSocket.using[Array[Byte]] { request =>
+    Logger.info("Someone just connected!")
+
+//  Create an Enumerator that sends a message to the  client
+    val enumerator = Enumerator.fromStream(new URL("http://pzxc.com/f/posts/14/f2-33.txt").openStream())
+
+//  Create an Iteratee that listens for messages from the client
+    val iteratee = Iteratee.foreach[Array[Byte]] { msg =>
+      Logger.info(s"Got message $msg")
+    }
+
+    (iteratee, enumerator)
   }
 }

@@ -21,6 +21,8 @@ class TestSpec extends Specification {
 
 //      val seq = Seq(1,2,3)
       val seq = JsArray(Seq(JsNumber(1), JsNumber(2), JsNumber(3)))
+
+      1 + 1 must beEqualTo(2)
     }
   }
 }

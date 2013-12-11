@@ -9,7 +9,7 @@ object ApplicationBuild extends Build {
 
   val dbDependencies = Seq(
     "postgresql" % "postgresql" % "9.1-901-1.jdbc4",
-    "com.typesafe.play" %% "play-slick" % "0.4.0",
+    "com.typesafe.play" %% "play-slick" % "0.4.0" exclude("org.scala-stm", "scala-stm_2.10.0"),
     jdbc
   )
 
@@ -18,7 +18,7 @@ object ApplicationBuild extends Build {
     "com.newrelic.agent.java" % "newrelic-agent" % "3.1.0"
   ) ++ dbDependencies
 
-  val anagrammer = Project("anagrammer", file("modules/anagrammer"), settings = Defaults.defaultSettings ++ play.Project.intellijCommandSettings("SCALA"))
+  val anagrammer = Project("anagrammer", file("modules/anagrammer"), settings = Defaults.defaultSettings ++ play.Project.intellijCommandSettings)
 
   val api = play.Project("api", "1.0", path = file("modules/api"))
 
