@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/toolbox -Dhttp.port=${PORT} ${JAVA_OPTS} -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=${DATABASE_URL}
+web: target/universal/stage/bin/toolbox -Dhttp.port=${PORT} -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=${DATABASE_URL} -Dnewrelic.bootstrap_classpath=true -javaagent:target/staged/newrelic-agent-3.1.0.jar
