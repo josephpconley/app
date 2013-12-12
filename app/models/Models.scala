@@ -33,3 +33,43 @@ object Models{
     }
   }
 }
+
+import play.api.Play.current
+import play.api.db.slick.Config.driver.simple._
+import play.api.db.DB
+
+/**
+ * Helper for otherwise verbose Slick model definitions
+ */
+trait CRUDModel[T <: AnyRef { val id: Option[Long] }] { self: Table[T] =>
+
+  def id: Column[Long]
+  def * : scala.slick.lifted.ColumnBase[T]
+  def autoInc = * returning id
+
+  val db = Database.forDataSource(DB.getDataSource("h2"))
+
+  def insert(entity: T) = db.withTransaction {
+    autoInc.insert(entity)
+  }
+
+  def insertAll(entities: Seq[T]) = db.withTransaction {
+    autoInc.insertAll(entities: _*)
+  }
+
+  def update(id: Long, entity: T) = db.withTransaction {
+    tableQueryToUpdateInvoker(
+      tableToQuery(this).where(_.id === id)
+    ).update(entity)
+  }
+
+  def delete(id: Long) = db.withTransaction {
+    queryToDeleteInvoker(
+      tableToQuery(this).where(_.id === id)
+    ).delete
+  }
+
+  def count = db.withTransaction {
+    Query(tableToQuery(this).length).first
+  }
+}

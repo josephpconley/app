@@ -1,6 +1,6 @@
 package models
 
-import slick.driver.H2Driver.simple._
+import play.api.db.slick.Config.driver.simple._
 import Database.threadLocalSession
 import play.api.Logger
 import play.api.db.DB
