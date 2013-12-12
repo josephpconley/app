@@ -6,9 +6,13 @@
 GET     /                           controllers.Application.index
 GET     /users                      controllers.Application.users
 
-# Twitter
+# Twitter (OAuth 1.x)
 GET     /twitter                    controllers.Twitter.index
 GET     /twitter/auth               controllers.Twitter.authenticate
+
+# LinkedIn (OAuth 2.x)
+GET     /linkedin                   controllers.LinkedIn.index
+GET     /linkedin/auth              controllers.LinkedIn.authenticate
 
 #Single-page apps
 GET     /db                         controllers.Application.db
