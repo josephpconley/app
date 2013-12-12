@@ -27,29 +27,27 @@ trait CRUDModel[T <: AnyRef { val id: Option[Long] }] { self: Table[T] =>
   def * : scala.slick.lifted.ColumnBase[T]
   def autoInc = * returning id
 
-  val db = Database.forDataSource(DB.getDataSource("h2"))
-
-  def insert(entity: T) = db.withTransaction {
+  def insert(entity: T) = Models.db.withTransaction {
     autoInc.insert(entity)
   }
 
-  def insertAll(entities: Seq[T]) = db.withTransaction {
+  def insertAll(entities: Seq[T]) = Models.db.withTransaction {
     autoInc.insertAll(entities: _*)
   }
 
-  def update(id: Long, entity: T) = db.withTransaction {
+  def update(id: Long, entity: T) = Models.db.withTransaction {
     tableQueryToUpdateInvoker(
       tableToQuery(this).where(_.id === id)
     ).update(entity)
   }
 
-  def delete(id: Long) = db.withTransaction {
+  def delete(id: Long) = Models.db.withTransaction {
     queryToDeleteInvoker(
       tableToQuery(this).where(_.id === id)
     ).delete
   }
 
-  def count = db.withTransaction {
+  def count = Models.db.withTransaction {
     Query(tableToQuery(this).length).first
   }
 }
@@ -59,6 +57,8 @@ object Models{
     dateTime => new Timestamp(dateTime.getMillis),
     time => new DateTime(time.getTime)
   )
+
+  val db = Database.forDataSource(DB.getDataSource())
 
   def flatten3[A, B, C](t: ((A, B), C)) : (A, B, C) = (t._1._1, t._1._2, t._2)
   def flatten4[A, B, C, D](t: (((A, B), C), D)) : (A, B, C, D) = (t._1._1._1, t._1._1._2, t._1._2, t._2)

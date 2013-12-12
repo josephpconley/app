@@ -20,15 +20,15 @@ object UserTable extends Table[User]("test_user"){
     {t => User(t._1, t._2, t._3)}, {(u: User) => Some(u.firstName, u.lastName, u.createDate)}
   )
 
-  def findAll : Seq[User] = Database.forDataSource(DB.getDataSource("h2")) withTransaction {
+  def findAll : Seq[User] = Models.db withTransaction {
     Query(UserTable).sortBy(_.lastName).list
   }
 
-  def findById(id: Long): Option[User] = Database.forDataSource(DB.getDataSource("h2")) withTransaction {
+  def findById(id: Long): Option[User] = Models.db withTransaction {
     Query(UserTable).where(_.id === id).firstOption
   }
 
-  def insert(u: User) = Database.forDataSource(DB.getDataSource("h2")) withTransaction {
+  def insert(u: User) = Models.db withTransaction {
     UserTable.forInsert returning UserTable.id insert u
   }
 

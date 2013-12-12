@@ -9,7 +9,7 @@ object ApplicationBuild extends Build {
 
   val dbDependencies = Seq(
     "postgresql" % "postgresql" % "9.1-901-1.jdbc4",
-    "com.typesafe.play" %% "play-slick" % "0.4.0" exclude("org.scala-stm", "scala-stm_2.10.0"),
+    "com.typesafe.play" %% "play-slick" % "0.5.0.8" exclude("org.scala-stm", "scala-stm_2.10.0"),
     jdbc
   )
 
