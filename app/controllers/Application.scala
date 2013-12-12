@@ -2,10 +2,11 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-import models.UserTable
+import models.{User, UserTable}
 import play.api.data.Form
 import play.api.data.Forms._
 import anagrams.Anagrammer
+import java.sql.Date
 
 object Application extends Controller {
 
@@ -19,5 +20,11 @@ object Application extends Controller {
 
   def db = Action { implicit req =>
     Ok(views.html.db())
+  }
+
+  def users = Action { implicit req =>
+    val joe = User("joe", "conley", new Date(new java.util.Date().getTime))
+    UserTable.insert(joe)
+    Ok(UserTable.findAll.mkString("\n"))
   }
 }

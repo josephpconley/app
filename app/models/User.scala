@@ -8,7 +8,7 @@ import play.api.Play.current
 import scala.slick.lifted.ColumnOption.DBType
 import java.sql.Date
 
-case class User(firstName: String, lastName: String, createDate: java.sql.Date, id: Option[Long] = None)
+case class User(firstName: String, lastName: String, createDate: Date, id: Option[Long] = None)
 
 object UserTable extends Table[User]("test_user"){
   def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
