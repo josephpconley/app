@@ -28,7 +28,7 @@ class ApplicationSpec extends Specification {
     "test async" in {
 //      println(Source.fromFile(new java.io.File("conf/scrabble.txt")).getLines().size)
 //      val producer = Enumerator.fromFile(new java.io.File("conf/scrabble.txt"))
-      val producer = Enumerator.fromStream(new URL("http://pzxc.com/f/posts/14/f2-33.txt").openStream())
+      val producer: Enumerator[Array[Byte]] = Enumerator.fromStream(new URL("http://pzxc.com/f/posts/14/f2-33.txt").openStream())
 
       //return all anagrams of eno
       val input = "eno"
@@ -44,8 +44,6 @@ class ApplicationSpec extends Specification {
       //testing with String
       val strEncoder: Enumeratee[Array[Byte], Array[String]] = util.Encoding.decodeStrings()
 
-//      val adapter: Enumeratee[Array[Byte], String]
-
 //      val charPrinter = Iteratee.foreach[Array[Char]]{ a =>
 //        println(a.mkString(","))
 //        println(a(a.length-7) == '\n')
@@ -56,19 +54,19 @@ class ApplicationSpec extends Specification {
 //      new File("results.txt").delete
 //      val output:Output = Resource.fromFile("results.txt")
 //
-//      val strPrinter = Iteratee.foreach[Array[String]]{ a =>
-////        a.foreach(println)
-////        println("JOE")
-//
-//        output.writeStrings(a, "\n")
-//        output.write("JOE")
-//
-//        Thread.sleep(2000)
-//      }
+      val strPrinter = Iteratee.foreach[Array[String]]{ a =>
+//        a.foreach(println)
+//        println("JOE")
+
+        output.writeStrings(a, "\n")
+        output.write("JOE")
+
+        Thread.sleep(2000)
+      }
 
       //      new File("results.txt").delete
 
-      val consumer: Iteratee[Array[Byte], ArrayBuffer[String]] = filters.transform(aggregator)
+      val consumer: Iteratee[Array[Byte], ArrayBuffer[String]] = strEncoder.transform(aggregator)
 
 //      Helpers.await(producer(encoder.transform(charPrinter)).flatMap(i => i.run))
 //      Helpers.await(producer(strEncoder.transform(strPrinter)).flatMap(i => i.run))

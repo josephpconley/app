@@ -11,6 +11,7 @@ import play.api.libs.iteratee.{Iteratee, Enumerator, Concurrent}
 import java.net.URL
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.collection.mutable.ArrayBuffer
 
 /**
  * User: joe
@@ -37,17 +38,26 @@ object Anagrams extends Controller{
     Ok(Json.toJson(solutions))
   }
 
-  def connect = WebSocket.using[Array[Byte]] { request =>
-    Logger.info("Someone just connected!")
+  def connect = TODO
 
-//  Create an Enumerator that sends a message to the  client
-    val enumerator = Enumerator.fromStream(new URL("http://pzxc.com/f/posts/14/f2-33.txt").openStream())
-
-//  Create an Iteratee that listens for messages from the client
-    val iteratee = Iteratee.foreach[Array[Byte]] { msg =>
-      Logger.info(s"Got message $msg")
-    }
-
-    (iteratee, enumerator)
-  }
+//  def connect = WebSocket.using[String] { request =>
+//    Logger.info("Someone just connected!")
+//
+////  Create an Enumerator that sends a message to the  client
+//    val enumerator = Enumerator.fromStream(new URL("http://pzxc.com/f/posts/14/f2-33.txt").openStream())
+//
+//
+//
+//    val aggregator = Iteratee.fold[Array[String], ArrayBuffer[String]](ArrayBuffer[String]()){ (buffer, el) =>
+//      buffer.appendAll(el.filter(x => Anagrammer.isAnagram(input, x)))
+//      buffer
+//    }
+//
+////  Create an Iteratee that listens for messages from the client
+//    val iteratee = Iteratee.foreach[Array[Byte]] { msg =>
+//      Logger.info(s"Got message $msg")
+//    }
+//
+//    (iteratee, enumerator)
+//  }
 }
