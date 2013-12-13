@@ -12,6 +12,8 @@ import java.net.URL
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.collection.mutable.ArrayBuffer
+import play.api.libs.EventSource
+import scala.concurrent.Future
 
 /**
  * User: joe
@@ -32,13 +34,22 @@ object Anagrams extends Controller{
 
     val solutions = (req.body \ "mode").as[String] match {
       case "jumble" => Anagrammer.unscramble(input, bank)
-      case _ => Anagrammer.matchesWithWild(input, numWild, bank)
+      case _ => Anagrammer.subsetsWithWild(input, numWild, bank)
     }
 
     Ok(Json.toJson(solutions))
   }
 
-  def connect = TODO
+  def solveAsync = Action.async{
+
+    Future(Ok)
+  }
+
+  def solutions = Action {
+    //Ok.feed(EventDao.stream &> EventSource()).as(EVENT_STREAM)
+
+    Ok
+  }
 
 //  def connect = WebSocket.using[String] { request =>
 //    Logger.info("Someone just connected!")

@@ -21,9 +21,9 @@ import scala.Predef.String
 /**
  * Helper for otherwise verbose Slick model definitions
  */
-trait CRUDModel[T <: AnyRef { val id: Option[Long] }] { self: Table[T] =>
+trait CRUD[T <: AnyRef { val id: Option[Long] }] { self: Table[T] =>
 
-  def id: Column[Long]
+  def id = column[Long]("ID", O.PrimaryKey, O.AutoInc)
   def * : scala.slick.lifted.ColumnBase[T]
   def autoInc = * returning id
 
@@ -33,6 +33,10 @@ trait CRUDModel[T <: AnyRef { val id: Option[Long] }] { self: Table[T] =>
 
   def insertAll(entities: Seq[T]) = Models.db.withTransaction {
     autoInc.insertAll(entities: _*)
+  }
+
+  def findAll = Models.db.withTransaction {
+    Query(this).list()
   }
 
   def update(id: Long, entity: T) = Models.db.withTransaction {

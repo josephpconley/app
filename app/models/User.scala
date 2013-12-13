@@ -8,13 +8,22 @@ import play.api.Play.current
 import scala.slick.lifted.ColumnOption.DBType
 import java.sql.Date
 
+
+
+case class Role(name: String, id: Option[Long] = None)
+
+object RoleTable extends Table[Role]("ROLE") with CRUD[Role]{
+  def name = column[String]("NAME")
+  def * = name ~ id.? <> (Role, Role.unapply _)
+}
+
 case class User(firstName: String, lastName: String, createDate: Date, id: Option[Long] = None)
 
-object UserTable extends Table[User]("test_user"){
-  def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
-  def firstName = column[String]("first_name", DBType("varchar(50)"))
-  def lastName = column[String]("last_name", DBType("varchar(50)"))
-  def createDate = column[java.sql.Date]("create_date", DBType("date default sysdate"))
+object UserTable extends Table[User]("TEST_USER"){
+  def id = column[Long]("ID", O.PrimaryKey, O.AutoInc)
+  def firstName = column[String]("FIRST_NAME", DBType("varchar(50)"))
+  def lastName = column[String]("LAST_NAME", DBType("varchar(50)"))
+  def createDate = column[java.sql.Date]("CREATE_DATE", DBType("date default sysdate"))
   def * = firstName ~ lastName ~ createDate ~ id.? <> (User, User.unapply _)
   def forInsert = firstName ~ lastName ~ createDate <> (
     {t => User(t._1, t._2, t._3)}, {(u: User) => Some(u.firstName, u.lastName, u.createDate)}

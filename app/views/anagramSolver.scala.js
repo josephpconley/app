@@ -3,7 +3,7 @@
 $(function() {
 
     var WS = window['MozWebSocket'] ? MozWebSocket : WebSocket
-    var socket = new WS("@routes.Anagrams.connect().webSocketURL()")
+    //var socket = new WS("@@routes.Anagrams.connect().webSocketURL()")
 
     var sendMessage = function() {
         chatSocket.send(JSON.stringify(

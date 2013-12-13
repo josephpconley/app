@@ -5,6 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index
 GET     /users                      controllers.Application.users
+GET     /roles                      controllers.Application.roles
 
 # Twitter (OAuth 1.x)
 GET     /twitter                    controllers.Twitter.index
@@ -20,7 +21,7 @@ GET     /api                        controllers.Application.api
 
 GET     /anagrams                   controllers.Anagrams.solver
 POST    /anagrams                   controllers.Anagrams.solve
-GET     /connect                    controllers.Anagrams.connect
+GET     /solutions                  controllers.Anagrams.solutions
 
 ->      /api                        api.Routes
 ->      /db                         db.Routes

@@ -37,42 +37,24 @@ class ApplicationSpec extends Specification {
         buffer
       }
 
-      val encoder: Enumeratee[Array[Byte], Array[Char]] = util.Encoding.decode()
-      val adapter: Enumeratee[Array[Char], Array[String]] = Enumeratee.map[Array[Char]](a => a.mkString.split("\n"))
-      val filters: Enumeratee[Array[Byte], Array[String]] = encoder.compose(adapter)
+      val strEncoder: Enumeratee[Array[Byte], Array[String]] = plugins.Encoding.decodeStrings()
+      val flatten: Enumeratee[Array[String], String] = Enumeratee.mapFlatten[Array[String]]{ array =>
+        Enumerator(array:_*)
+      }
+      def isAnagram(input:String): Enumeratee[String, String] = Enumeratee.filter[String](s => Anagrammer.isAnagram(input, s))
+      val filters: Enumeratee[Array[Byte], String] = strEncoder.compose(flatten).compose(isAnagram(input))
 
-      //testing with String
-      val strEncoder: Enumeratee[Array[Byte], Array[String]] = util.Encoding.decodeStrings()
-
-//      val charPrinter = Iteratee.foreach[Array[Char]]{ a =>
-//        println(a.mkString(","))
-//        println(a(a.length-7) == '\n')
-//        println("JOE")
-//        Thread.sleep(4000)
-//      }
-
-//      new File("results.txt").delete
-//      val output:Output = Resource.fromFile("results.txt")
-//
-      val strPrinter = Iteratee.foreach[Array[String]]{ a =>
-//        a.foreach(println)
-//        println("JOE")
-
-        output.writeStrings(a, "\n")
-        output.write("JOE")
-
-        Thread.sleep(2000)
+      val strPrinter = Iteratee.foreach[String]{ a =>
+        println(a)
       }
 
-      //      new File("results.txt").delete
+//      val consumer: Iteratee[Array[Byte], ArrayBuffer[String]] = filters.transform(aggregator)
 
-      val consumer: Iteratee[Array[Byte], ArrayBuffer[String]] = strEncoder.transform(aggregator)
-
-//      Helpers.await(producer(encoder.transform(charPrinter)).flatMap(i => i.run))
+      Helpers.await(producer(filters.transform(strPrinter)).flatMap(i => i.run))
 //      Helpers.await(producer(strEncoder.transform(strPrinter)).flatMap(i => i.run))
 
-      val words = Helpers.await(producer(consumer).flatMap(i => i.run))
-      words.foreach(println)
+//      val words = Helpers.await(producer(consumer).flatMap(i => i.run))
+//      words.foreach(println)
 
       1 + 1 must beEqualTo(2)
     }

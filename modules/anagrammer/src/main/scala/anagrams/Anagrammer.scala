@@ -14,16 +14,15 @@ object Anagrammer {
 
   def unscramble(jumble: String, wordBank: Seq[String]): Seq[String] = wordBank.filter(w => isAnagram(jumble, w))
 
-  //for scrabble-like situations, return all possible matches from a string of letters
-  def matches(letters: String, wordBank: Seq[String]): Seq[String] = {
-    val combos:Seq[Set[Char]] = letters.toCharArray.toSet.subsets.toSeq
-    combos.flatMap(c => unscramble(c.mkString, wordBank))
-  }
+  def isSubset(s:String, letters:String) = s.toSet.subsetOf(letters.toSet)
+  
+  //for scrabble-like situations, return all valid subsets (words) from a string of letters
+  def subsets(letters: String, wordBank: Seq[String]): Seq[String] = wordBank.filter(w => isSubset(w, letters))
 
-  def matchesWithWild(letters: String, numWild: Int, wordBank:Seq[String]): Seq[String] = {
+  def subsetsWithWild(letters: String, numWild: Int, wordBank:Seq[String]): Seq[String] = {
     numWild match {
-      case 0 => matches(letters, wordBank)
-      case x:Int => alphabet.flatMap(alpha => matchesWithWild(letters + alpha, x - 1, wordBank))
+      case 0 => subsets(letters, wordBank)
+      case x:Int => alphabet.flatMap(alpha => subsetsWithWild(letters + alpha, x - 1, wordBank))
     }
   }
 }

@@ -1,12 +1,7 @@
 package controllers
 
 import play.api.mvc.{RequestHeader, Action, Controller}
-import play.api.libs.oauth._
 import play.api.libs.ws.WS
-import play.api.libs.oauth.ServiceInfo
-import play.api.libs.oauth.OAuth
-import play.api.libs.oauth.RequestToken
-import play.api.libs.oauth.ConsumerKey
 
 import concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -20,8 +15,6 @@ object LinkedIn extends Controller {
   val API_KEY = "77t642l6zzlhpt"
   val SECRET_KEY = "RGsdJC8G9Qz2FHKf"
   val STATE = "BNADFASKFA1874012nbakjan95280"
-
-  val KEY = ConsumerKey("7uAQfWwEyIuGwqjyYkEzRQ", "sbmVHgNBnQtJ8QjUKrrljPJWDkFbHXlxGLGkIRrV5Q")
 
   def AUTH_CODE_URL = "https://www.linkedin.com/uas/oauth2/authorization?response_type=code" +
                         s"&client_id=$API_KEY&state=$STATE&redirect_uri=$redirectURL"

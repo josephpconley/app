@@ -2,7 +2,7 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-import models.{User, UserTable}
+import models.{Role, RoleTable, User, UserTable}
 import play.api.data.Form
 import play.api.data.Forms._
 import anagrams.Anagrammer
@@ -26,5 +26,10 @@ object Application extends Controller {
     val joe = User("joe", "conley", new Date(new java.util.Date().getTime))
     UserTable.insert(joe)
     Ok(UserTable.findAll.mkString("\n"))
+  }
+
+  def roles = Action { implicit req =>
+    RoleTable.insert(Role("joe"))
+    Ok(RoleTable.findAll.mkString("\n"))
   }
 }

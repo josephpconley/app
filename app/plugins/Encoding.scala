@@ -1,4 +1,4 @@
-package util
+package plugins
 
 import java.nio.charset.{Charset, CharsetDecoder}
 import play.api.libs.iteratee._
@@ -88,14 +88,14 @@ object Encoding {
     /**
      * We carry partialChar as state from the stream
      */
-    def step[A](inner: Iteratee[Array[String], A], partialString: Option[Array[Byte]] = None)(in: Input[Array[Byte]]): Iteratee[Array[Byte], Iteratee[Array[String], A]] = {
+    def step[A](inner: Iteratee[Array[String], A], partialChar: Option[Array[Byte]] = None, leftOverChar: Option[Array[Char]] = None)(in: Input[Array[Byte]]): Iteratee[Array[Byte], Iteratee[Array[String], A]] = {
       in match {
         // We've reached EOF. If we're in the middle of reading a multibyte character, then this is an error,
         // otherwise we just pass it down the chain
-        case EOF => partialString.map(_ => Error[Array[Byte]]("EOF encountered mid character", EOF))
+        case EOF => partialChar.map(_ => Error[Array[Byte]]("EOF encountered mid character", EOF))
           .getOrElse(Done[Array[Byte],Iteratee[Array[String],A]](inner, EOF))
 
-        case Empty => Cont(step(inner, partialString))
+        case Empty => Cont(step(inner, partialChar, leftOverChar))
 
         case El(data) => {
           // Allocate buffers
@@ -109,7 +109,7 @@ object Encoding {
           val charBuffer = CharBuffer.allocate(data.length + 1)
 
           // Byte buffer should contain any left over characters followed by the input data
-          val byteBuffer = partialString.map({ leftOver =>
+          val byteBuffer = partialChar.map({ leftOver =>
             val buffer = ByteBuffer.allocate(leftOver.length + data.length)
             buffer.mark()
             buffer.put(leftOver).put(data)
@@ -127,26 +127,17 @@ object Encoding {
           } else None
 
           // Extract and translate to input for the iteratee
-          val decoded = charBuffer.array().take(charBuffer.position())
+          val decoded = leftOverChar.getOrElse(Array[Char]()) ++ charBuffer.array().take(charBuffer.position())
           val lastNewLine = decoded.lastIndexOf('\n')
           val (decodedChars, extraChars) = decoded.splitAt(lastNewLine)
 
-//          println("extra: " + extraChars.mkString + " " + extraChars.length)
-
           val decodedStrings = decodedChars.mkString.split("\n")
-
-          val extraBuffer:ArrayBuffer[Byte] = new ArrayBuffer()
-
-          extraChars.foreach(c => extraBuffer.append(c.toByte))
-          leftOver.foreach(l => extraBuffer.appendAll(l))
-
-          val totalLeftOver: Option[Array[Byte]] = if(extraBuffer.size > 0) Some(extraBuffer.toArray) else None
 
           val input = if (decoded.length == 0) Empty else El(decodedStrings)
 
           // Fold the input into the iteratee, returning it this function with the new left over state
           inner.pureFlatFold {
-            case Step.Cont(k) => Cont(step(k(input), totalLeftOver))
+            case Step.Cont(k) => Cont(step(k(input), leftOver, Some(extraChars)))
             case _ => Done(inner, Input.Empty)
           }
         }
