@@ -18,6 +18,7 @@ object WSTool extends Controller {
     Json.reads[Call].reads(req.body).fold(
       invalid => Future(BadRequest),
       call => {
+        println(call)
         val req = WS.url(call.url)
         val response = call.method match {
           case "GET" => req.get()

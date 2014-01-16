@@ -13,10 +13,18 @@ object ApplicationBuild extends Build {
     jdbc
   )
 
+  val scrapeDependencies = Seq(
+    "net.sourceforge.htmlunit" % "htmlunit" % "2.13",
+    "org.apache.httpcomponents" % "httpclient" % "4.3.1",
+    "com.itextpdf" % "itextpdf" % "5.4.5",
+    "com.github.scala-incubator.io" %% "scala-io-core" % "0.4.2",
+    "com.github.scala-incubator.io" %% "scala-io-file" % "0.4.2"
+  )
+
   val appDependencies = Seq(
     // Add your project dependencies here,
     "com.newrelic.agent.java" % "newrelic-agent" % "3.1.0"
-  ) ++ dbDependencies
+  ) ++ dbDependencies ++ scrapeDependencies
 
   val anagrammer = Project("anagrammer", file("modules/anagrammer"), settings = Defaults.defaultSettings ++ play.Project.intellijCommandSettings)
 

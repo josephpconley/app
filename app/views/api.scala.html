@@ -39,7 +39,7 @@ function WS(){
 
     self.responseBody = ko.observable("");
     self.call = function(){
-        wsRoutes.controllers.ws.WSTool.call().ajax({
+        wsRoutes.controllers.api.WSTool.call().ajax({
             data: ko.toJSON(self),
             contentType: 'text/json',
             success: function(data){

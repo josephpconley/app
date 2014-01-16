@@ -25,6 +25,8 @@ trait CRUD[T <: AnyRef { val id: Option[Long] }] { self: Table[T] =>
 
   def id = column[Long]("ID", O.PrimaryKey, O.AutoInc)
   def * : scala.slick.lifted.ColumnBase[T]
+
+  // only works for h2, for postgres need to define the forInsert project as usual
   def autoInc = * returning id
 
   def insert(entity: T) = Models.db.withTransaction {
@@ -39,16 +41,16 @@ trait CRUD[T <: AnyRef { val id: Option[Long] }] { self: Table[T] =>
     Query(this).list()
   }
 
+  def findById(id: Long): Option[T] = Models.db.withTransaction {
+    Query(this).where(_.id === id).firstOption
+  }
+
   def update(id: Long, entity: T) = Models.db.withTransaction {
-    tableQueryToUpdateInvoker(
-      tableToQuery(this).where(_.id === id)
-    ).update(entity)
+    tableQueryToUpdateInvoker(tableToQuery(this).where(_.id === id)).update(entity)
   }
 
   def delete(id: Long) = Models.db.withTransaction {
-    queryToDeleteInvoker(
-      tableToQuery(this).where(_.id === id)
-    ).delete
+    queryToDeleteInvoker(tableToQuery(this).where(_.id === id)).delete
   }
 
   def count = Models.db.withTransaction {

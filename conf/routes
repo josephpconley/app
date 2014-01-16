@@ -23,6 +23,10 @@ GET     /anagrams                   controllers.Anagrams.solver
 POST    /anagrams                   controllers.Anagrams.solve
 GET     /solutions                  controllers.Anagrams.solutions
 
+#RSS
+GET     /rss                        controllers.RSS.index
+GET     /rss/:name.xml              controllers.RSS.xml(name: String)
+
 ->      /api                        api.Routes
 ->      /db                         db.Routes
 

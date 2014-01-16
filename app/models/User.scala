@@ -41,6 +41,8 @@ object UserTable extends Table[User]("TEST_USER"){
     UserTable.forInsert returning UserTable.id insert u
   }
 
+
+
 //  def findByEmail(email: String): Option[User] = Database.forDataSource(DB.getDataSource()) withTransaction {
 //    Query(UserTable).where(_.email === email).firstOption
 //  }
