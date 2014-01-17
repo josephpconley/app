@@ -4,6 +4,246 @@
         <title>Philly New ebooks</title>
         <description>Notification of new ebooks for Free Library of Philadelphia members</description>
         <link>http://app.josephpconley.com/rss/philly.xml</link>
-        <atom:link href="http://app.josephpconley.com/rss/philly.xml" rel="self" type="application/rss+xml"/>
+        <atom:link href="http://app.josephpconley.com/rss/philly.xml" rel="self" type="application/rss+xml"/><item>
+      <title>The Atlantis Code by Charles Brokaw</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=2B5D8BA9-F5A5-4DA0-B3B3-117E84036786">
+        <h3>The Atlantis Code</h3>
+        <h4>by Charles Brokaw</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/2390-1/2B5/D8B/A9/%7B2B5D8BA9-F5A5-4DA0-B3B3-117E84036786%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=2B5D8BA9-F5A5-4DA0-B3B3-117E84036786</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=2B5D8BA9-F5A5-4DA0-B3B3-117E84036786</guid>
+    </item><item>
+      <title>Bring Up the Bodies by Hilary Mantel</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=4F83FB58-2923-41D3-846A-680C0B537AFB">
+        <h3>Bring Up the Bodies</h3>
+        <h4>by Hilary Mantel</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/2390-1/4F8/3FB/58/%7B4F83FB58-2923-41D3-846A-680C0B537AFB%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=4F83FB58-2923-41D3-846A-680C0B537AFB</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=4F83FB58-2923-41D3-846A-680C0B537AFB</guid>
+    </item><item>
+      <title>Destined For an Early Grave by Jeaniene Frost</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=DAC21908-08C8-4B80-BC9F-52E29CD1A3FD">
+        <h3>Destined For an Early Grave</h3>
+        <h4>by Jeaniene Frost</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/DAC/219/08/%7BDAC21908-08C8-4B80-BC9F-52E29CD1A3FD%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=DAC21908-08C8-4B80-BC9F-52E29CD1A3FD</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=DAC21908-08C8-4B80-BC9F-52E29CD1A3FD</guid>
+    </item><item>
+      <title>Eventide by Shelley Shepard Gray</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=6A519186-5169-4F49-AA9D-2D0FC92D55CE">
+        <h3>Eventide</h3>
+        <h4>by Shelley Shepard Gray</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/6A5/191/86/%7B6A519186-5169-4F49-AA9D-2D0FC92D55CE%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=6A519186-5169-4F49-AA9D-2D0FC92D55CE</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=6A519186-5169-4F49-AA9D-2D0FC92D55CE</guid>
+    </item><item>
+      <title>How to Lose a Bride in One Night by Sophie Jordan</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=B43C4826-B733-4C58-A8F2-1BEDA6A9C6A3">
+        <h3>How to Lose a Bride in One Night</h3>
+        <h4>by Sophie Jordan</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/B43/C48/26/%7BB43C4826-B733-4C58-A8F2-1BEDA6A9C6A3%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=B43C4826-B733-4C58-A8F2-1BEDA6A9C6A3</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=B43C4826-B733-4C58-A8F2-1BEDA6A9C6A3</guid>
+    </item><item>
+      <title>Lighthouse Island by Paulette Jiles</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=46BF6423-F901-450D-AADB-485BE27E4134">
+        <h3>Lighthouse Island</h3>
+        <h4>by Paulette Jiles</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/46B/F64/23/%7B46BF6423-F901-450D-AADB-485BE27E4134%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=46BF6423-F901-450D-AADB-485BE27E4134</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=46BF6423-F901-450D-AADB-485BE27E4134</guid>
+    </item><item>
+      <title>The Lucifer Code by Charles Brokaw</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=73461D9D-0B28-4CB7-818D-878021D289ED">
+        <h3>The Lucifer Code</h3>
+        <h4>by Charles Brokaw</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/2390-1/734/61D/9D/%7B73461D9D-0B28-4CB7-818D-878021D289ED%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=73461D9D-0B28-4CB7-818D-878021D289ED</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=73461D9D-0B28-4CB7-818D-878021D289ED</guid>
+    </item><item>
+      <title>One Lucky Vampire by Lynsay Sands</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=7340E9B1-E704-4110-8526-7DE725A81050">
+        <h3>One Lucky Vampire</h3>
+        <h4>by Lynsay Sands</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/734/0E9/B1/%7B7340E9B1-E704-4110-8526-7DE725A81050%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=7340E9B1-E704-4110-8526-7DE725A81050</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=7340E9B1-E704-4110-8526-7DE725A81050</guid>
+    </item><item>
+      <title>The Perfume Collector by Kathleen Tessaro</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=70FF4D5F-CE65-4C0B-AC7F-DC0D4540C77D">
+        <h3>The Perfume Collector</h3>
+        <h4>by Kathleen Tessaro</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/70F/F4D/5F/%7B70FF4D5F-CE65-4C0B-AC7F-DC0D4540C77D%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=70FF4D5F-CE65-4C0B-AC7F-DC0D4540C77D</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=70FF4D5F-CE65-4C0B-AC7F-DC0D4540C77D</guid>
+    </item><item>
+      <title>Ray of Light by Shelley Shepard Gray</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=B032353F-73FB-4D32-975A-1C61FC560B23">
+        <h3>Ray of Light</h3>
+        <h4>by Shelley Shepard Gray</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/B03/235/3F/%7BB032353F-73FB-4D32-975A-1C61FC560B23%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=B032353F-73FB-4D32-975A-1C61FC560B23</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=B032353F-73FB-4D32-975A-1C61FC560B23</guid>
+    </item><item>
+      <title>Reconstructing Amelia by Kimberly McCreight</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=299F0B45-E833-4A77-BCB2-8AD7D1D43002">
+        <h3>Reconstructing Amelia</h3>
+        <h4>by Kimberly McCreight</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/299/F0B/45/%7B299F0B45-E833-4A77-BCB2-8AD7D1D43002%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=299F0B45-E833-4A77-BCB2-8AD7D1D43002</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=299F0B45-E833-4A77-BCB2-8AD7D1D43002</guid>
+    </item><item>
+      <title>Run to You by Rachel Gibson</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=2DD28004-E434-4D18-B6EB-112617B5C217">
+        <h3>Run to You</h3>
+        <h4>by Rachel Gibson</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/2DD/280/04/%7B2DD28004-E434-4D18-B6EB-112617B5C217%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=2DD28004-E434-4D18-B6EB-112617B5C217</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=2DD28004-E434-4D18-B6EB-112617B5C217</guid>
+    </item><item>
+      <title>Solo by William Boyd</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=56F149F6-5D22-41BE-AF5C-1453CA36156E">
+        <h3>Solo</h3>
+        <h4>by William Boyd</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/56F/149/F6/%7B56F149F6-5D22-41BE-AF5C-1453CA36156E%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=56F149F6-5D22-41BE-AF5C-1453CA36156E</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=56F149F6-5D22-41BE-AF5C-1453CA36156E</guid>
+    </item><item>
+      <title>Someday Soon by Debbie Macomber</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=46414D36-0BF0-49CD-9B30-C0857FA4FC20">
+        <h3>Someday Soon</h3>
+        <h4>by Debbie Macomber</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/464/14D/36/%7B46414D36-0BF0-49CD-9B30-C0857FA4FC20%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=46414D36-0BF0-49CD-9B30-C0857FA4FC20</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=46414D36-0BF0-49CD-9B30-C0857FA4FC20</guid>
+    </item><item>
+      <title>Sooner or Later by Debbie Macomber</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=33E70C6E-CFBC-456E-9CB3-0DEBB41258DB">
+        <h3>Sooner or Later</h3>
+        <h4>by Debbie Macomber</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/33E/70C/6E/%7B33E70C6E-CFBC-456E-9CB3-0DEBB41258DB%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=33E70C6E-CFBC-456E-9CB3-0DEBB41258DB</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=33E70C6E-CFBC-456E-9CB3-0DEBB41258DB</guid>
+    </item><item>
+      <title>The Temple Mount Code by Charles Brokaw</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=5DBDB399-96F8-4580-B9F3-54480714AD70">
+        <h3>The Temple Mount Code</h3>
+        <h4>by Charles Brokaw</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/2390-1/5DB/DB3/99/%7B5DBDB399-96F8-4580-B9F3-54480714AD70%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=5DBDB399-96F8-4580-B9F3-54480714AD70</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=5DBDB399-96F8-4580-B9F3-54480714AD70</guid>
+    </item><item>
+      <title>A Tree Grows in Brooklyn by Betty Smith</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=5878894C-3569-4BEB-8DD3-CB9CFD4941E1">
+        <h3>A Tree Grows in Brooklyn</h3>
+        <h4>by Betty Smith</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0415-1/587/889/4C/%7B5878894C-3569-4BEB-8DD3-CB9CFD4941E1%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=5878894C-3569-4BEB-8DD3-CB9CFD4941E1</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=5878894C-3569-4BEB-8DD3-CB9CFD4941E1</guid>
+    </item><item>
+      <title>Up From the Grave by Jeaniene Frost</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=6B33D72F-CD22-49D7-BCE2-15B037F434D7">
+        <h3>Up From the Grave</h3>
+        <h4>by Jeaniene Frost</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/6B3/3D7/2F/%7B6B33D72F-CD22-49D7-BCE2-15B037F434D7%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=6B33D72F-CD22-49D7-BCE2-15B037F434D7</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=6B33D72F-CD22-49D7-BCE2-15B037F434D7</guid>
+    </item><item>
+      <title>Wolf Hall by Hilary Mantel</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=98C67017-B545-4873-8854-A4BA6BDAEFC1">
+        <h3>Wolf Hall</h3>
+        <h4>by Hilary Mantel</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/2390-1/98C/670/17/%7B98C67017-B545-4873-8854-A4BA6BDAEFC1%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=98C67017-B545-4873-8854-A4BA6BDAEFC1</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=98C67017-B545-4873-8854-A4BA6BDAEFC1</guid>
+    </item><item>
+      <title>The 9th Girl by Tami Hoag</title>
+      <description><![CDATA[<div>
+      <a href="http://freelibrary.lib.overdrive.comContentDetails.htm?id=B9C085BA-A481-4BEB-831C-8783C7E2DE81">
+        <h3>The 9th Girl</h3>
+        <h4>by Tami Hoag</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/1523-1/B9C/085/BA/%7BB9C085BA-A481-4BEB-831C-8783C7E2DE81%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://freelibrary.lib.overdrive.comContentDetails.htm?id=B9C085BA-A481-4BEB-831C-8783C7E2DE81</link>
+      <guid>http://freelibrary.lib.overdrive.comContentDetails.htm?id=B9C085BA-A481-4BEB-831C-8783C7E2DE81</guid>
+    </item>
       </channel>
     </rss>
