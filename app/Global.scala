@@ -18,14 +18,16 @@ object Global extends GlobalSettings {
 //    Models.ddl.dropStatements.mkString("\n", ";\n\n", ";\n") + Models.ddl.createStatements.mkString("\n", ";\n\n", ";\n"));
 
     //update RSS feeds every 6 hours
-    Akka.system.scheduler.schedule(0 seconds, 6 hours){
-      Logger.info("Updating feeds")
-      RSS.feeds.foreach{ f =>
-        Logger.info("Updating feed " + f.name)
+    if(Play.isProd(app)){
+      Akka.system.scheduler.schedule(0 seconds, 12 hours){
+        Logger.info("Updating feeds")
+        RSS.feeds.foreach{ f =>
+          Logger.info("Updating feed " + f.name)
 
-        val writer: PrintWriter = new PrintWriter(new File("public/feeds/" + f.name + ".xml"))
-        scala.xml.XML.write(writer, f.xml, "utf-8", true, null)
-        writer.flush
+          val writer: PrintWriter = new PrintWriter(new File("public/feeds/" + f.name + ".xml"))
+          scala.xml.XML.write(writer, f.xml, "utf-8", true, null)
+          writer.flush
+        }
       }
     }
   }
