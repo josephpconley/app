@@ -6,31 +6,39 @@
 
 @main("Anagram Solver", moreScripts = knockout()) {
     <div class="row">
-        <form class="form-horizontal span5">
+        <form role="form" class="form-horizontal col-md-6" style="border-right: 1px solid gray;">
             <h4>Anagram Input</h4>
             @htmlControl("Mode"){
-                <label class="radio inline"><input type="radio" name="modeGroup" value="jumble" data-bind="checked: mode"/>Jumble</label>
-                <label class="radio inline"><input type="radio" name="modeGroup" value="scrabble" data-bind="checked: mode"/> Scrabble</label>
+                <div class="col-md-9">
+                    <label class="radio-inline"><input type="radio" name="modeGroup" value="jumble" data-bind="checked: mode"/>Jumble</label>
+                    <label class="radio-inline"><input type="radio" name="modeGroup" value="scrabble" data-bind="checked: mode"/> Scrabble</label>
+                </div>
             }
             @htmlControl("Word List Source"){
-                @for(b <- banks){
-                    <label class="radio inline"><input type="radio" name="bankGroup" value="@b.name" data-bind="checked: selectedBank"/>@b.name</label><br>
-                }
-                <label class="radio inline"><input type="radio" name="bankGroup" value="custom" data-bind="checked: selectedBank"/>Custom</label><br>
-                <textarea class="span3" data-bind="value: customBank" placeholder="Custom word list"></textarea>
+                <div class="col-md-9">
+                    @for(b <- banks){
+                        <label class="radio-inline"><input type="radio" name="bankGroup" value="@b.name" data-bind="checked: selectedBank"/>@b.name</label><br>
+                    }
+                    <label class="radio-inline"><input type="radio" name="bankGroup" value="custom" data-bind="checked: selectedBank"/>Custom</label><br>
+                    <textarea class="col-md-6 form-control" data-bind="value: customBank" placeholder="Custom word list"></textarea>
+                </div>
             }
             @htmlControl("# Wilds"){
-                <input type="text" data-bind="numericValue: numWild"/></td>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" data-bind="numericValue: numWild"/>
+                </div>
             }
             @htmlControl("Input"){
-                <input type="text" data-bind="value: input"/>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" data-bind="value: input"/>
+                </div>
             }
             <button class="btn" data-bind="click: call, disable: searching">Submit</button>
         </form>
-        <div class="span6" style="border-left: 1px solid gray; padding-left:50px">
+        <div class="col-md-6">
             <h4>Solutions</h4>
             @htmlControl(""){
-                <textarea data-bind="value: answerList" rows="10" class="span6" placeholder="No solutions found"></textarea>
+                <textarea data-bind="value: answerList" rows="10" class="col-md-12" placeholder="No solutions found"></textarea>
             }
         </div>
     </div>

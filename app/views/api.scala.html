@@ -6,10 +6,10 @@
 
 @main("WS Tool", moreScripts = knockout()) {
     <div class="row">
-        <div class="span5">
+        <div class="col-md-6">
             <h4>Request</h4>
-            <table>
-                <tr><td>URL</td><td><textarea class="span4" data-bind="value: url"></textarea><br></td></tr>
+            <table class="table">
+                <tr><td>URL</td><td><textarea class="col-md-12" data-bind="value: url"></textarea><br></td></tr>
                 <tr><td>Method</td>
                     <td>
                         <select data-bind="value: method">
@@ -18,14 +18,15 @@
                         </select>
                     </td>
                 </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="btn" data-bind="click: call">Submit</button></td>
+                </tr>
             </table>
-            <button class="btn" data-bind="click: call">Submit</button>
         </div>
-        <div class="span6" style="border-left: 1px solid gray; padding-left:50px">
+        <div class="col-md-6" style="border-left: 1px solid gray; padding-left:50px">
             <h4>Response</h4>
-            @htmlControl("Body"){
-                <textarea data-bind="value: responseBody" rows="30" class="span6"></textarea>
-            }
+            <textarea data-bind="value: responseBody" rows="30" class="col-md-12"></textarea>
         </div>
     </div>
 }

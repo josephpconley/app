@@ -5,18 +5,26 @@
 )
 
 @main("Cloud Database Query Engine", moreScripts = knockout()) {
-    <form class="span12 form-inline">
-        <input type="text" data-bind="value: driver" placeholder="Driver"/>
-        <input type="text" data-bind="value: url" placeholder="URL"/>
-        <input type="text" data-bind="value: user" placeholder="Username"/>
-        <input type="password" data-bind="value: pass" placeholder="Password"/>
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <input type="text" class="form-control" data-bind="value: driver" placeholder="Driver"/>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" data-bind="value: url" placeholder="URL"/>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control"data-bind="value: user" placeholder="Username"/>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" data-bind="value: pass" placeholder="Password"/>
+        </div>
     </form>
-    <textarea class="span12" rows="5" data-bind="value: query"></textarea>
+    <textarea class="col-md-12" rows="5" data-bind="value: query"></textarea>
     <button class="btn" data-bind="click: execute">Submit</button>
 
     <h4>Results</h4>
     <p data-bind="visible: resultSet().rows().length == 0, text: response"></p>
-    <table id="myTable" class="tablesorter span12" data-bind="visible: resultSet().rows().length > 0">
+    <table id="myTable" class="tablesorter col-md-12" data-bind="visible: resultSet().rows().length > 0">
         <thead>
             <tr data-bind="foreach: resultSet().columns">
                 <th data-bind="text: $data"></th>
