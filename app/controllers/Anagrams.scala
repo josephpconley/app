@@ -34,7 +34,11 @@ object Anagrams extends Controller{
 
     val solutions = (req.body \ "mode").as[String] match {
       case "jumble" => Anagrammer.unscramble(input, bank)
-      case _ => Anagrammer.subsetsWithWild(input, numWild, bank)
+      case _ => {
+        val regex = (req.body \ "regex").as[String]
+        bank.filter(word => word.matches(regex))
+//        Anagrammer.subsetsWithWild(input, numWild, bank)
+      }
     }
 
     Ok(Json.toJson(solutions))

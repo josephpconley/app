@@ -10,8 +10,8 @@
             <h4>Anagram Input</h4>
             @htmlControl("Mode"){
                 <div class="col-md-9">
+                    <label class="radio-inline"><input type="radio" name="modeGroup" value="regex" data-bind="checked: mode"/> Regex</label>
                     <label class="radio-inline"><input type="radio" name="modeGroup" value="jumble" data-bind="checked: mode"/>Jumble</label>
-                    <label class="radio-inline"><input type="radio" name="modeGroup" value="scrabble" data-bind="checked: mode"/> Scrabble</label>
                 </div>
             }
             @htmlControl("Word List Source"){
@@ -23,10 +23,10 @@
                     <textarea class="col-md-6 form-control" data-bind="value: customBank" placeholder="Custom word list"></textarea>
                 </div>
             }
-            @htmlControl("# Wilds"){
-                <div class="col-md-9">
-                    <input class="form-control" type="text" data-bind="numericValue: numWild"/>
-                </div>
+            @htmlControl("Regex"){
+            <div class="col-md-9">
+                <input class="form-control" type="text" data-bind="value: regex"/>
+            </div>
             }
             @htmlControl("Input"){
                 <div class="col-md-9">
@@ -36,7 +36,7 @@
             <button class="btn" data-bind="click: call, disable: searching">Submit</button>
         </form>
         <div class="col-md-6">
-            <h4>Solutions</h4>
+            <h4 data-bind="text: answerLabel()"></h4>
             @htmlControl(""){
                 <textarea data-bind="value: answerList" rows="10" class="col-md-12" placeholder="No solutions found"></textarea>
             }
@@ -54,10 +54,11 @@ function Bank(name, url){
 function AnagramSolver(){
     var self = this;
     self.banks = ko.observableArray([]);
-    self.mode = ko.observable("jumble");
+    self.mode = ko.observable("regex");
     self.selectedBank = ko.observable("");
     self.customBank = ko.observable("");
     self.numWild = ko.observable(0);
+    self.regex = ko.observable("");
     self.answers = ko.observableArray([]);
     self.input = ko.observable("");
     self.url = ko.observable("");
@@ -65,6 +66,12 @@ function AnagramSolver(){
 
     self.answerList = ko.computed(function(){
         return self.answers().join("\n");
+    });
+
+    self.answerLabel = ko.computed(function(){
+        var num = self.answers().length
+        var suffix = num == 1 ? "" : "s"
+        return num + " solution" + suffix + " found."
     });
 
     self.customList = ko.computed(function(){

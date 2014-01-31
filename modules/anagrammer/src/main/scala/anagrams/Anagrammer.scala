@@ -1,5 +1,7 @@
 package anagrams
 
+import scala.io.Source
+
 case class WordBank(name:String, url: String)
 
 object Anagrammer {
@@ -15,7 +17,7 @@ object Anagrammer {
   def unscramble(jumble: String, wordBank: Seq[String]): Seq[String] = wordBank.filter(w => isAnagram(jumble, w))
 
   def isSubset(s:String, letters:String) = s.toSet.subsetOf(letters.toSet)
-  
+
   //for scrabble-like situations, return all valid subsets (words) from a string of letters
   def subsets(letters: String, wordBank: Seq[String]): Seq[String] = wordBank.filter(w => isSubset(w, letters))
 
@@ -25,4 +27,15 @@ object Anagrammer {
       case x:Int => alphabet.flatMap(alpha => subsetsWithWild(letters + alpha, x - 1, wordBank))
     }
   }
+}
+
+//TODO how can we do this in our app?
+object AnagramApp extends App{
+  val bank = Source.fromURL(Anagrammer.SCRABBLE.url).getLines().toSeq
+  val doubleS = bank.filter(word => word.matches(".*ss.*"))
+
+  val pairs = doubleS.map(word => word -> word.replace("ss", "")).seq
+  val validWords = pairs.filter(t => bank.contains(t._2))
+  validWords.foreach(println)
+
 }
