@@ -19,9 +19,9 @@ GET     /linkedin/auth              controllers.LinkedIn.authenticate
 GET     /db                         controllers.Application.db
 GET     /api                        controllers.Application.api
 
-GET     /anagrams                   controllers.Anagrams.solver
-POST    /anagrams                   controllers.Anagrams.solve
-GET     /solutions                  controllers.Anagrams.solutions
+GET     /puzzles                    controllers.Puzzles.solver
+POST    /puzzles                    controllers.Puzzles.solve
+GET     /solutions                  controllers.Puzzles.solutions
 
 #RSS
 GET     /rss                        controllers.RSS.index

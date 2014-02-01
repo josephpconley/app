@@ -1,7 +1,7 @@
 @(banks: Seq[anagrams.WordBank])(implicit req: RequestHeader)
 
 @helper.javascriptRouter("anagramRoutes")(
-    routes.javascript.Anagrams.solve
+    routes.javascript.Puzzles.solve
 )
 
 @main("Anagram Solver", moreScripts = knockout()) {
@@ -92,7 +92,7 @@ function AnagramSolver(){
 
     self.call = function(){
         self.searching(true);
-        anagramRoutes.controllers.Anagrams.solve().ajax({
+        anagramRoutes.controllers.Puzzles.solve().ajax({
             data: ko.toJSON(self),
             contentType: 'text/json',
             success: function(data){

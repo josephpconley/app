@@ -26,7 +26,9 @@ object ApplicationBuild extends Build {
     "com.newrelic.agent.java" % "newrelic-agent" % "3.1.0"
   ) ++ dbDependencies ++ scrapeDependencies
 
-  val anagrammer = Project("anagrammer", file("modules/anagrammer"), settings = Defaults.defaultSettings ++ play.Project.intellijCommandSettings)
+
+  //mklink /D C:\workspace\joec\toolbox\modules\puzzles C:\workspace\joec\scala\puzzles
+  val puzzles = Project("puzzles", file("modules/puzzles"), settings = Defaults.defaultSettings ++ play.Project.intellijCommandSettings)
 
   val api = play.Project("api", "1.0", path = file("modules/api"))
 
@@ -34,6 +36,6 @@ object ApplicationBuild extends Build {
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     resolvers += Resolver.url("sbt-plugin-releases", new URL("http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns)
-  ).dependsOn(anagrammer, api, db).aggregate(anagrammer, api, db)
+  ).dependsOn(puzzles, api, db).aggregate(puzzles, api, db)
 
 }

@@ -19,7 +19,7 @@ import scala.concurrent.Future
  * User: joe
  * Date: 12/7/13
  */
-object Anagrams extends Controller{
+object Puzzles extends Controller{
   def solver = Action { implicit req =>
     Ok(views.html.anagramSolver(Anagrammer.BANKS))
   }
