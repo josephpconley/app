@@ -1,6 +1,7 @@
 call git add .
 call git commit -am %1
-call git checkout heroku
+call git branch -D heroku
+call git checkout -b heroku
 call git merge master
 call cd C:\workspace\joec\scala\puzzles
 call sbt package
