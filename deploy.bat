@@ -10,4 +10,3 @@ call cd C:\workspace\joec\toolbox
 call git add .
 call git commit -am %1
 call git push -f heroku HEAD:master
-call git checkout master

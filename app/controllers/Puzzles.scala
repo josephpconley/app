@@ -1,9 +1,9 @@
 package controllers
 
-import puzzles.{WordBank, Puzzle}
+import anagrams.Anagrammer
 import play.api.mvc.{WebSocket, Action, Controller}
 import scala.io.Source
-import puzzles.Puzzle._
+import anagrams.Anagrammer._
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
 import play.api.Logger
@@ -21,39 +21,39 @@ import scala.concurrent.Future
  */
 object Puzzles extends Controller{
   def solver = Action { implicit req =>
-    Ok(views.html.puzzleSolver(WordBank.BANKS))
+    Ok(views.html.anagramSolver(Anagrammer.BANKS))
   }
 
   def solve = Action(parse.json) { implicit req =>
-    val bank: Seq[String] = (req.body \ "name").asOpt[String].map{ name =>
-      WordBank.BANKS.filter(b => b.name == name).head.words
+    val bank: Seq[String] = (req.body \ "url").asOpt[String].map{ url =>
+      Source.fromURL(url).getLines().toSeq
     }.getOrElse((req.body \ "customList").as[Seq[String]])
 
     val reads = ((__ \ "input").read[String] and (__ \ "numWild").read[Int]).tupled
     val (input, numWild) = reads.reads(req.body).getOrElse(throw new Exception("Bad JSON"))
 
     val solutions = (req.body \ "mode").as[String] match {
-      case "anagram" => Puzzle.unscramble(input, bank)
-      case "scrabble" => Puzzle.subsetsWithWild(input, numWild, bank).toSeq.sorted
+      case "jumble" => Anagrammer.unscramble(input, bank)
       case _ => {
         val regex = (req.body \ "regex").as[String]
         bank.filter(word => word.matches(regex))
+//        Anagrammer.subsetsWithWild(input, numWild, bank)
       }
     }
 
     Ok(Json.toJson(solutions))
   }
 
-//Part 2 - Convert to Streaming
+  def solveAsync = Action.async{
 
-//  def solveAsync = Action.async{
-//    Future(Ok)
-//  }
-//
-//  def solutions = Action {
-//    //Ok.feed(EventDao.stream &> EventSource()).as(EVENT_STREAM)
-//    Ok
-//  }
+    Future(Ok)
+  }
+
+  def solutions = Action {
+    //Ok.feed(EventDao.stream &> EventSource()).as(EVENT_STREAM)
+
+    Ok
+  }
 
 //  def connect = WebSocket.using[String] { request =>
 //    Logger.info("Someone just connected!")
