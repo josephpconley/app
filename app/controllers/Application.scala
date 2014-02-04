@@ -5,7 +5,7 @@ import play.api.mvc._
 import models._
 import play.api.data.Form
 import play.api.data.Forms._
-import anagrams.Anagrammer
+import puzzles.Puzzle
 import java.sql.Date
 import models.User
 import models.Role

@@ -11,7 +11,7 @@ import scala.concurrent.Await
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.io.Source
-import anagrams.Anagrammer
+import puzzles.Puzzle
 import scala.collection.mutable.ArrayBuffer
 import scalax.io.{Output, Resource}
 import java.io.File
@@ -33,7 +33,7 @@ class ApplicationSpec extends Specification {
       //return all anagrams of eno
       val input = "eno"
       val aggregator = Iteratee.fold[Array[String], ArrayBuffer[String]](ArrayBuffer[String]()){ (buffer, el) =>
-        buffer.appendAll(el.filter(x => Anagrammer.isAnagram(input, x)))
+        buffer.appendAll(el.filter(x => Puzzle.isAnagram(input, x)))
         buffer
       }
 
@@ -41,7 +41,7 @@ class ApplicationSpec extends Specification {
       val flatten: Enumeratee[Array[String], String] = Enumeratee.mapFlatten[Array[String]]{ array =>
         Enumerator(array:_*)
       }
-      def isAnagram(input:String): Enumeratee[String, String] = Enumeratee.filter[String](s => Anagrammer.isAnagram(input, s))
+      def isAnagram(input:String): Enumeratee[String, String] = Enumeratee.filter[String](s => Puzzle.isAnagram(input, s))
       val filters: Enumeratee[Array[Byte], String] = strEncoder.compose(flatten).compose(isAnagram(input))
 
       val strPrinter = Iteratee.foreach[String]{ a =>

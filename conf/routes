@@ -21,7 +21,7 @@ GET     /api                        controllers.Application.api
 
 GET     /puzzles                    controllers.Puzzles.solver
 POST    /puzzles                    controllers.Puzzles.solve
-GET     /solutions                  controllers.Puzzles.solutions
+#GET     /solutions                  controllers.Puzzles.solutions
 
 #RSS
 GET     /rss                        controllers.RSS.index

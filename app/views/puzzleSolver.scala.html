@@ -1,17 +1,18 @@
-@(banks: Seq[anagrams.WordBank])(implicit req: RequestHeader)
+@(banks: Seq[puzzles.WordBank])(implicit req: RequestHeader)
 
-@helper.javascriptRouter("anagramRoutes")(
+@helper.javascriptRouter("puzzlesRoutes")(
     routes.javascript.Puzzles.solve
 )
 
-@main("Anagram Solver", moreScripts = knockout()) {
+@main("Puzzle Solver", moreScripts = knockout()) {
     <div class="row">
         <form role="form" class="form-horizontal col-md-6" style="border-right: 1px solid gray;">
-            <h4>Anagram Input</h4>
+            <h4>Puzzle Input</h4>
             @htmlControl("Mode"){
                 <div class="col-md-9">
-                    <label class="radio-inline"><input type="radio" name="modeGroup" value="regex" data-bind="checked: mode"/> Regex</label>
-                    <label class="radio-inline"><input type="radio" name="modeGroup" value="jumble" data-bind="checked: mode"/>Jumble</label>
+                    <label class="radio-inline"><input type="radio" name="modeGroup" value="anagram" data-bind="checked: mode"/>Anagram</label>
+                    <label class="radio-inline"><input type="radio" name="modeGroup" value="scrabble" data-bind="checked: mode"/>Scrabble</label>
+                    <label class="radio-inline"><input type="radio" name="modeGroup" value="regex" data-bind="checked: mode"/>Regex</label>
                 </div>
             }
             @htmlControl("Word List Source"){
@@ -23,16 +24,27 @@
                     <textarea class="col-md-6 form-control" data-bind="value: customBank" placeholder="Custom word list"></textarea>
                 </div>
             }
+            <!-- ko if: mode() === 'regex' -->
             @htmlControl("Regex"){
             <div class="col-md-9">
                 <input class="form-control" type="text" data-bind="value: regex"/>
             </div>
             }
+            <!-- /ko -->
+            <!-- ko if: mode() != 'regex' -->
             @htmlControl("Input"){
                 <div class="col-md-9">
                     <input class="form-control" type="text" data-bind="value: input"/>
                 </div>
             }
+            <!-- /ko -->
+            <!-- ko if: mode() === 'scrabble' -->
+            @htmlControl("Num Wild"){
+            <div class="col-md-9">
+                <input class="form-control" type="text" data-bind="numericValue: numWild"/>
+            </div>
+            }
+            <!-- /ko -->
             <button class="btn" data-bind="click: call, disable: searching">Submit</button>
         </form>
         <div class="col-md-6">
@@ -45,23 +57,22 @@
 }
 
 <script>
-function Bank(name, url){
+function Bank(name){
     var self = this;
     self.name = ko.observable(name);
-    self.url = ko.observable(url);
 }
 
-function AnagramSolver(){
+function PuzzleSolver(){
     var self = this;
     self.banks = ko.observableArray([]);
-    self.mode = ko.observable("regex");
+    self.mode = ko.observable("anagram");
     self.selectedBank = ko.observable("");
     self.customBank = ko.observable("");
     self.numWild = ko.observable(0);
     self.regex = ko.observable("");
     self.answers = ko.observableArray([]);
     self.input = ko.observable("");
-    self.url = ko.observable("");
+    self.name = ko.observable("");
     self.searching = ko.observable(false);
 
     self.answerList = ko.computed(function(){
@@ -80,11 +91,11 @@ function AnagramSolver(){
 
     self.selectedBank.subscribe(function(s){
         if(s == "custom"){
-            self.url(null);
+            self.name(null);
         }else{
             for(var i = 0; i < self.banks().length; i++){
                 if(self.banks()[i].name() == s){
-                    self.url(self.banks()[i].url());
+                    self.name(self.banks()[i].name());
                 }
             }
         }
@@ -92,16 +103,14 @@ function AnagramSolver(){
 
     self.call = function(){
         self.searching(true);
-        anagramRoutes.controllers.Puzzles.solve().ajax({
+        puzzlesRoutes.controllers.Puzzles.solve().ajax({
             data: ko.toJSON(self),
             contentType: 'text/json',
             success: function(data){
-                console.log(data);
                 self.answers(data);
                 self.searching(false);
             },
             error: function(data){
-                console.log(data);
                 var response = $.parseJSON(data.responseText);
                 self.searching(false);
             }
@@ -109,12 +118,12 @@ function AnagramSolver(){
     }
 }
 
-var as = new AnagramSolver();
-ko.applyBindings(as);
+var solver = new PuzzleSolver();
+ko.applyBindings(solver);
 
 @for(b <- banks){
-    as.banks.push(new Bank('@b.name', '@b.url'));
+    solver.banks.push(new Bank('@b.name', '@b.filename'));
 }
-as.selectedBank('@banks.head.name');
+solver.selectedBank('@banks.head.name');
 
 </script>
