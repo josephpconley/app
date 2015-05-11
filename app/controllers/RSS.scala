@@ -4,10 +4,6 @@ import play.api.mvc.{Action, Controller}
 import com.josephpconley.books.NewEBookFeed
 import java.io.File
 
-/**
- * User: joe
- * Date: 12/7/13
- */
 object RSS extends Controller{
   val feeds = Seq(NewEBookFeed.delco, NewEBookFeed.philly)
 

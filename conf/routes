@@ -4,20 +4,6 @@
 
 # Home page
 GET     /                           controllers.Application.index
-GET     /users                      controllers.Application.users
-GET     /roles                      controllers.Application.roles
-
-# Twitter (OAuth 1.x)
-GET     /twitter                    controllers.Twitter.index
-GET     /twitter/auth               controllers.Twitter.authenticate
-
-# LinkedIn (OAuth 2.x)
-GET     /linkedin                   controllers.LinkedIn.index
-GET     /linkedin/auth              controllers.LinkedIn.authenticate
-
-#Single-page apps
-GET     /db                         controllers.Application.db
-GET     /api                        controllers.Application.api
 
 GET     /puzzles                    controllers.Puzzles.solver
 POST    /puzzles                    controllers.Puzzles.solve
@@ -26,9 +12,6 @@ POST    /puzzles                    controllers.Puzzles.solve
 #RSS
 GET     /rss                        controllers.RSS.index
 GET     /rss/:name.xml              controllers.RSS.xml(name: String)
-
-->      /api                        api.Routes
-->      /db                         db.Routes
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

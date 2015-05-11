@@ -1,31 +1,6 @@
 @()(implicit req: RequestHeader)
 
-@main("Joe's Code", moreScripts = knockout()) {
+@main("Joe's Code") {
     <h3>Welcome!</h3>
     <p>This is a basic Play app with some random functionality</p>
 }
-
-<script>
-function Tag(){
-    var self = this;
-    self.url = ko.observable("");
-    self.label = ko.observable("");
-
-    self.load = function(url, label){
-        self.url(url);
-        self.label(label);
-    }
-
-    self.view = function(){
-        $("#viewingPane").attr("src", self.url());
-    }
-}
-
-function TagList(){
-    var self = this;
-    self.tags = ko.observableArray();
-}
-
-var list = new TagList();
-ko.applyBindings(list);
-</script>
