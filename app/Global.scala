@@ -12,16 +12,14 @@ object Global extends GlobalSettings {
 
   override def onStart (app: Application){
 
-    if(Play.isProd(app)){
-      Akka.system.scheduler.schedule(0 seconds, 12 hours){
-        Logger.info("Updating feeds")
-        RSS.feeds.foreach{ f =>
-          Logger.info("Updating feed " + f.name)
+    Akka.system.scheduler.schedule(0 seconds, 12 hours){
+      Logger.info("Updating feeds")
+      RSS.feeds.foreach{ f =>
+        Logger.info("Updating feed " + f.name)
 
-          val writer: PrintWriter = new PrintWriter(new File("public/feeds/" + f.name + ".xml"))
-          scala.xml.XML.write(writer, f.xml(f.items()), "utf-8", true, null)
-          writer.flush
-        }
+        val writer: PrintWriter = new PrintWriter(new File("public/feeds/" + f.name + ".xml"))
+        scala.xml.XML.write(writer, f.xml(f.items()), "utf-8", true, null)
+        writer.flush
       }
     }
   }
