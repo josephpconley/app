@@ -15,4 +15,6 @@ out
 RUNNING_PID
 .settings
 atlassian-ide-plugin.xml
-modules/puzzles
+modules/scala-puzzles
+modules/scala-scrape
+modules/swagger2postman
