@@ -18,3 +18,4 @@ atlassian-ide-plugin.xml
 modules/scala-puzzles
 modules/scala-scrape
 modules/swagger2postman
+public/feeds
