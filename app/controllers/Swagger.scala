@@ -1,5 +1,7 @@
 package controllers
 
+import java.io.File
+
 import com.josephpconley.swagger2postman.Swagger2Postman
 import com.josephpconley.swagger2postman.models.{CollectionFormats, CollectionArgs}
 import play.api.Logger
@@ -13,12 +15,22 @@ import scala.concurrent.duration.Duration
 import scala.concurrent.ExecutionContext.Implicits.global
 import play.api.Play.current
 
+import scala.io.Source
+
 object Swagger
   extends Controller
   with CollectionFormats {
 
   def index = Action { implicit req =>
-    Ok(views.html.swagger2postman())
+    Ok(views.html.swagger.swagger2postman())
+  }
+
+  def ui = Action { implicit req =>
+    Ok(views.html.swagger.swaggerUI())
+  }
+
+  def spec(version: String) = Action { implicit req =>
+    Ok(Source.fromFile(new File("petstore12.json")).mkString)
   }
 
   def generate = Action(parse.json) { implicit req =>

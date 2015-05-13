@@ -5,18 +5,6 @@
         <description>Notification of new ebooks for Delaware County Library members</description>
         <link>http://app.josephpconley.com/rss/delco.xml</link>
         <atom:link href="http://app.josephpconley.com/rss/delco.xml" rel="self" type="application/rss+xml"/><item>
-      <title>Mr. Cooper Is Super! by Dan Gutman						 by Dan Gutman</title>
-      <description><![CDATA[<div>
-      <a href="http://delawareco.libraryreserve.com//#">
-        <h3>Mr. Cooper Is Super! by Dan Gutman						</h3>
-        <h4>by Dan Gutman</h4>
-      </a>
-      <img src="//images.contentreserve.com/ImageType-150/0293-1/511/30A/6F/%7B51130A6F-4A0A-4CF8-9F5B-337265318044%7DImg150.jpg"/>
-    </div>]]>
-      </description>
-      <link>http://delawareco.libraryreserve.com//#</link>
-      <guid>http://delawareco.libraryreserve.com//#</guid>
-    </item><item>
       <title>Mrs. Lane Is a Pain! by Dan Gutman						 by Dan Gutman</title>
       <description><![CDATA[<div>
       <a href="http://delawareco.libraryreserve.com//#">
@@ -24,6 +12,18 @@
         <h4>by Dan Gutman</h4>
       </a>
       <img src="//images.contentreserve.com/ImageType-150/0293-1/EE2/144/EF/%7BEE2144EF-2215-42D4-A537-93A90919D1B9%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://delawareco.libraryreserve.com//#</link>
+      <guid>http://delawareco.libraryreserve.com//#</guid>
+    </item><item>
+      <title>Mr. Cooper Is Super! by Dan Gutman						 by Dan Gutman</title>
+      <description><![CDATA[<div>
+      <a href="http://delawareco.libraryreserve.com//#">
+        <h3>Mr. Cooper Is Super! by Dan Gutman						</h3>
+        <h4>by Dan Gutman</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/511/30A/6F/%7B51130A6F-4A0A-4CF8-9F5B-337265318044%7DImg150.jpg"/>
     </div>]]>
       </description>
       <link>http://delawareco.libraryreserve.com//#</link>
@@ -41,18 +41,6 @@
       <link>http://delawareco.libraryreserve.com//#</link>
       <guid>http://delawareco.libraryreserve.com//#</guid>
     </item><item>
-      <title>Big Nate: The Crowd Goes Wild! by Lincoln Peirce						 by Lincoln Peirce</title>
-      <description><![CDATA[<div>
-      <a href="http://delawareco.libraryreserve.com//#">
-        <h3>Big Nate: The Crowd Goes Wild! by Lincoln Peirce						</h3>
-        <h4>by Lincoln Peirce</h4>
-      </a>
-      <img src="//images.contentreserve.com/ImageType-150/2437-1/4C9/BF4/D7/%7B4C9BF4D7-9A4D-488C-AA18-7DE2DE951580%7DImg150.jpg"/>
-    </div>]]>
-      </description>
-      <link>http://delawareco.libraryreserve.com//#</link>
-      <guid>http://delawareco.libraryreserve.com//#</guid>
-    </item><item>
       <title>The Forgotten Sisters by Shannon Hale						 by Shannon Hale</title>
       <description><![CDATA[<div>
       <a href="http://delawareco.libraryreserve.com//#">
@@ -60,6 +48,18 @@
         <h4>by Shannon Hale</h4>
       </a>
       <img src="//images.contentreserve.com/ImageType-150/2183-1/D9A/2EA/02/%7BD9A2EA02-05CB-40D6-AC5A-AF041E071EBA%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://delawareco.libraryreserve.com//#</link>
+      <guid>http://delawareco.libraryreserve.com//#</guid>
+    </item><item>
+      <title>Big Nate: The Crowd Goes Wild! by Lincoln Peirce						 by Lincoln Peirce</title>
+      <description><![CDATA[<div>
+      <a href="http://delawareco.libraryreserve.com//#">
+        <h3>Big Nate: The Crowd Goes Wild! by Lincoln Peirce						</h3>
+        <h4>by Lincoln Peirce</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/2437-1/4C9/BF4/D7/%7B4C9BF4D7-9A4D-488C-AA18-7DE2DE951580%7DImg150.jpg"/>
     </div>]]>
       </description>
       <link>http://delawareco.libraryreserve.com//#</link>
@@ -84,18 +84,6 @@
         <h4>by James L. Cambias</h4>
       </a>
       <img src="//images.contentreserve.com/ImageType-150/2390-1/034/C42/B3/%7B034C42B3-E0E3-45B6-B9EB-4C3C011F1372%7DImg150.jpg"/>
-    </div>]]>
-      </description>
-      <link>http://delawareco.libraryreserve.com//#</link>
-      <guid>http://delawareco.libraryreserve.com//#</guid>
-    </item><item>
-      <title>Love Is Red by Sophie Jaff						 by Sophie Jaff</title>
-      <description><![CDATA[<div>
-      <a href="http://delawareco.libraryreserve.com//#">
-        <h3>Love Is Red by Sophie Jaff						</h3>
-        <h4>by Sophie Jaff</h4>
-      </a>
-      <img src="//images.contentreserve.com/ImageType-150/0293-1/E4F/71C/2A/%7BE4F71C2A-545A-44E1-AB65-51C0C43DA8F4%7DImg150.jpg"/>
     </div>]]>
       </description>
       <link>http://delawareco.libraryreserve.com//#</link>
@@ -264,6 +252,18 @@
         <h4>by Helen Castor</h4>
       </a>
       <img src="//images.contentreserve.com/ImageType-150/0293-1/476/424/00/%7B47642400-B2C2-41CE-8C47-69BB642ED8EC%7DImg150.jpg"/>
+    </div>]]>
+      </description>
+      <link>http://delawareco.libraryreserve.com//#</link>
+      <guid>http://delawareco.libraryreserve.com//#</guid>
+    </item><item>
+      <title>Love Is Red by Sophie Jaff						 by Sophie Jaff</title>
+      <description><![CDATA[<div>
+      <a href="http://delawareco.libraryreserve.com//#">
+        <h3>Love Is Red by Sophie Jaff						</h3>
+        <h4>by Sophie Jaff</h4>
+      </a>
+      <img src="//images.contentreserve.com/ImageType-150/0293-1/E4F/71C/2A/%7BE4F71C2A-545A-44E1-AB65-51C0C43DA8F4%7DImg150.jpg"/>
     </div>]]>
       </description>
       <link>http://delawareco.libraryreserve.com//#</link>
