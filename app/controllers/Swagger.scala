@@ -2,14 +2,15 @@ package controllers
 
 import java.io.File
 
-import com.josephpconley.swagger2postman.Swagger2Postman
-import com.josephpconley.swagger2postman.models.{CollectionFormats, CollectionArgs}
+import com.josephpconley.swagger2postman.models.swagger.v12
+import com.josephpconley.swagger2postman.models.swagger.v12.Swagger2Postman
+import com.josephpconley.swagger2postman.{CollectionArgs, CollectionFormats}
 import play.api.Logger
 import play.api.libs.json._
 import play.api.libs.ws.WS
 import play.api.mvc.{Action, Controller}
 
-import scala.concurrent.Await
+import scala.concurrent.{Future, Await}
 import scala.concurrent.duration.Duration
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -33,13 +34,16 @@ object Swagger
     Ok(Source.fromFile(new File("petstore12.json")).mkString)
   }
 
-  def generate = Action(parse.json) { implicit req =>
+  def generate = Action.async(parse.json) { implicit req =>
     Json.fromJson[CollectionArgs](req.body).fold(
-      errors => {
+      errors => Future.successful {
         Logger.error(JsError.toFlatJson(errors).toString())
         BadRequest
       },
-      args => Ok(Swagger2PostmanPlay.generate(args))
+      args => WS.url(args.docUrl).get().map { res =>
+        val doc = Json.fromJson[v12.SwaggerDoc](res.json).get
+        Ok(Swagger2PostmanPlay.toPostman(doc, args))
+      }
     )
   }
 }

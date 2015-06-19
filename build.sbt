@@ -1,13 +1,11 @@
 name := "toolbox"
 
-version := "1.0-SNAPSHOT"
+version := "1.0"
 
 libraryDependencies ++= Seq(
   cache,
   ws,
   "com.typesafe.play" %% "play-mailer" % "2.4.1",
-  "com.typesafe.play" %% "play-slick" % "0.7.0",
-  "postgresql" % "postgresql" % "9.1-901.jdbc4",
   "org.webjars" % "jquery" % "2.1.1",
   "org.webjars" % "bootstrap" % "3.3.4",
   "org.webjars" % "font-awesome" % "4.3.0",
@@ -24,7 +22,6 @@ lazy val scrape = project.in(file("modules/scala-scrape"))
 
 //mklink /D C:\workspace\joec\toolbox\modules\swagger2postman C:\workspace\joec\swagger2postman
 lazy val swagger2postman = project.in(file("modules/swagger2postman"))
-
 
 //base
 lazy val toolbox = (project in file(".")).enablePlugins(PlayScala)

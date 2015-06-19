@@ -1,0 +1,14 @@
+#!/bin/bash
+# The logic to start up your application should be put in this
+# script. The application will work only if it binds to
+# $OPENSHIFT_DIY_IP:8080
+
+cd ${OPENSHIFT_DATA_DIR}
+unzip -o toolbox-1.0.zip
+
+cd toolbox-1.0
+kill -9 `cat RUNNING_PID`
+rm -rf RUNNING_PID
+chmod a+x bin/toolbox
+
+nohup bin/toolbox -Dhttp.port=${OPENSHIFT_DIY_PORT} -Dhttp.address=${OPENSHIFT_DIY_IP} &

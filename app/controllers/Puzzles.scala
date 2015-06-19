@@ -1,18 +1,9 @@
 package controllers
 
-import puzzles.{WordBank, Puzzle}
-import play.api.mvc.{WebSocket, Action, Controller}
-import scala.io.Source
-import puzzles.Puzzle._
-import play.api.libs.json._
 import play.api.libs.functional.syntax._
-import play.api.Logger
-import play.api.libs.iteratee.{Iteratee, Enumerator, Concurrent}
-
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.collection.mutable.ArrayBuffer
-import play.api.libs.EventSource
-import scala.concurrent.Future
+import play.api.libs.json._
+import play.api.mvc.{Action, Controller}
+import puzzles.{Puzzle, WordBank}
 
 object Puzzles extends Controller {
   def solver = Action { implicit req =>
