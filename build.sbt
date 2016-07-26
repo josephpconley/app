@@ -42,9 +42,9 @@ libraryDependencies ++= Seq(
 //lazy val scrape = project.in(file("modules/scala-scrape"))
 
 //mklink /D C:\workspace\joec\toolbox\modules\swagger2postman C:\workspace\joec\swagger2postman
-lazy val swagger2postman = project.in(file("modules/swagger2postman"))
+//lazy val swagger2postman = project.in(file("modules/swagger2postman"))
 
 //base
 lazy val toolbox = (project in file(".")).enablePlugins(PlayScala)
-  .dependsOn(swagger2postman)
-  .aggregate(swagger2postman)
+//  .dependsOn(swagger2postman)
+//  .aggregate(swagger2postman)
