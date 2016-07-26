@@ -6,7 +6,7 @@
 
 @main("Swagger2Postman", moreScripts = knockout()) {
 <div class="row">
-    <form role="form" class="form-horizontal col-md-6" method="POST" target="@routes.Swagger.download">
+    <form role="form" class="form-horizontal col-md-6">
         @htmlControl("Swagger Version"){
             <div class="col-md-9">
                 <select class="form-control" data-bind="options: versions, value: selectedVersion"></select>
