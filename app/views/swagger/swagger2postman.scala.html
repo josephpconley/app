@@ -7,13 +7,12 @@
 @main("Swagger2Postman", moreScripts = knockout()) {
 <div class="row">
     <form role="form" class="form-horizontal col-md-6">
-        <h4>Swagger2Postman</h4>
         @htmlControl("Swagger Version"){
             <div class="col-md-9">
                 <select class="form-control" data-bind="options: versions, value: selectedVersion"></select>
             </div>
         }
-        <div data-bind="visible: selectedVersion() === 1.2">
+        <div data-bind="visible: selectedVersion() === '1.2'">
         @htmlControl("Hostname"){
             <div class="col-md-9">
                 <div class="input-group">
@@ -23,9 +22,9 @@
             </div>
         }
         </div>
-        <div data-bind="visible: selectedVersion() === 2.0">
-        @htmlControl("Swagger 2.0 JSON"){
-            <textarea data-bind="value: swaggerJson" rows="10" placeholder="Swagger 2.0 JSON"></textarea>
+        <div data-bind="visible: selectedVersion() === '2.0'">
+        @htmlControl(""){
+            <textarea class="form-control" data-bind="value: swaggerJson" rows="10" placeholder="Swagger 2.0 JSON"></textarea>
         }
         </div>
         @htmlControl("Collection Name"){
@@ -53,9 +52,8 @@
         <button class="btn btn-primary btn-block" data-bind="click: generate">Generate Postman</button>
     </form>
     <div class="col-md-6">
-        <h4>Postman JSON</h4>
         @htmlControl(""){
-        <textarea data-bind="value: postman" rows="20" class="col-md-12" placeholder="Postman JSON result"></textarea>
+        <textarea data-bind="value: postman" rows="20" class="form-control col-md-12" placeholder="Postman JSON result"></textarea>
         }
     </div>
 </div>
@@ -70,10 +68,10 @@ function Header(){
 
 function Swagger(){
     var self = this;
-    self.host = ko.observable();
+    self.host = ko.observable("");
     self.swaggerJson = ko.observable();
     self.selectedVersion = ko.observable();
-    self.versions = ko.observableArray([1.2, 2.0]);
+    self.versions = ko.observableArray(["2.0", "1.2"]);
     self.name = ko.observable();
     self.headers = ko.observableArray([]);
     self.postman = ko.observable();
@@ -86,6 +84,7 @@ function Swagger(){
         }
 
         js["headers"] = headers;
+        js["swaggerJson"] = JSON.parse(self.swaggerJson())
         return JSON.stringify(js);
     }
 
