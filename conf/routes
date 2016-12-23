@@ -15,10 +15,11 @@ GET     /rss/:name.xml              controllers.RSS.xml(name: String)
 
 GET     /swagger2postman            controllers.Swagger.index
 POST    /swagger/generate           controllers.Swagger.generate
+POST    /swagger/download           controllers.Swagger.download
 GET     /swagger/ui                 controllers.Swagger.ui
 GET     /swagger/spec               controllers.Swagger.spec(version: String)
 
-POST    /swagger20                  controllers.Swagger.swagger20(name: String)
+#POST    /swagger20                  controllers.Swagger.swagger20(name: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

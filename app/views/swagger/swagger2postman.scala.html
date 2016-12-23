@@ -1,12 +1,12 @@
 @()(implicit req: RequestHeader)
 
 @helper.javascriptRouter("routes")(
-    routes.javascript.Swagger.generate
+    routes.javascript.Swagger.generate, routes.javascript.Swagger.download
 )
 
 @main("Swagger2Postman", moreScripts = knockout()) {
 <div class="row">
-    <form role="form" class="form-horizontal col-md-6">
+    <form role="form" class="form-horizontal col-md-6" method="POST" target="@routes.Swagger.download">
         @htmlControl("Swagger Version"){
             <div class="col-md-9">
                 <select class="form-control" data-bind="options: versions, value: selectedVersion"></select>
@@ -49,11 +49,14 @@
         </div>
         }
         <br>
-        <button class="btn btn-primary btn-block" data-bind="click: generate">Generate Postman</button>
+        <button class="btn btn-success btn-block" data-bind="click: generate">Generate Postman JSON</button>
     </form>
     <div class="col-md-6">
         @htmlControl(""){
         <textarea data-bind="value: postman" rows="20" class="form-control col-md-12" placeholder="Postman JSON result"></textarea>
+        <br>
+        @*TODO handle downloading of Postman JSON
+        <input class="btn btn-warning btn-block" type="submit" value="Download Postman JSON" />*@
         }
     </div>
 </div>
@@ -86,7 +89,7 @@ function Swagger(){
         js["headers"] = headers;
         js["swaggerJson"] = JSON.parse(self.swaggerJson())
         return JSON.stringify(js);
-    }
+    };
 
     self.generate = function(){
         routes.controllers.Swagger.generate().ajax({
@@ -99,7 +102,7 @@ function Swagger(){
                 console.log(data);
             }
         });
-    }
+    };
 
     self.addHeader = function(){
         self.headers.push(new Header())

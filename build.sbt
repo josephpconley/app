@@ -32,7 +32,8 @@ libraryDependencies ++= Seq(
   "org.webjars" % "font-awesome" % "4.3.0",
   "org.webjars" % "knockout" % "3.3.0",
   "org.webjars" % "knockout-projections" % "1.0.0",
-  "org.webjars" % "swagger-ui" % "2.1.8-M1"
+  "org.webjars" % "swagger-ui" % "2.1.8-M1",
+  "org.scalactic" %% "scalactic" % "3.0.1"
 ) ++ puzzlesDeps ++ scrapeDeps ++ swaggerDeps
 
 //mklink /D C:\workspace\joec\toolbox\modules\scala-puzzles C:\workspace\joec\scala-puzzles
